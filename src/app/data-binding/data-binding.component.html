@@ -1,26 +1,27 @@
 
 <section class="property-data-binding">
-
-    <!--
-        <article>
-            <h3>Interpolação</h3>
-            <p>String renderizada com interpolação: {{ url }}</p>
-            <p> Resultado de 1 + 1 = <b>{{ 1 + 1 }}</b></p>
-            <p> Resultado de 1 + 1 != <b>{{ 1 + 1 + getValor() }}</b></p>
-            <p> Curso Angular e gosto do curso: <b> {{ cursoAngular && getCurtirCurso() }}</b></p>
-            <img src="{{ urlImagem }}">        
-        </article>
-        
-        <br/>
-        <article>
-            <h3> Property Binding</h3> 
-            <img [src]="urlImagem" [attr.colspan]="2">     
-            <img bind-src="urlImagem" alt=""> 
-        </article>
-    -->
-    
+   <!--
     <article>
-        <h3> Class e Style Binding</h3> 
+        <h3>Aula 09 - Interpolação</h3>
+        <p>String renderizada com interpolação: {{ url }}</p>
+        <p> Resultado de 1 + 1 = <b>{{ 1 + 1 }}</b></p>
+        <p> Resultado de 1 + 1 != <b>{{ 1 + 1 + getValor() }}</b></p>
+        <p> Curso Angular e gosto do curso: <b> {{ cursoAngular && getCurtirCurso() }}</b></p>
+        <img src="{{ urlImagem }}">        
+    </article>
+    
+    <hr/>
+    <br/>
+    <article>
+        <h3> Aula 09 - Property Binding</h3> 
+        <img [src]="urlImagem" [attr.colspan]="2">     
+        <img bind-src="urlImagem" alt=""> 
+    </article>
+    
+    <hr/>
+    <br/>
+    <article>
+        <h3> Aula 10 - Class Binding</h3> 
 
         <div>
             Selecione uma classe:
@@ -34,7 +35,6 @@
             </select>
 
             <br/>
-            <p>Class Binding</p>    
             <div class="alert {{ classe.value }}" role="alert">
                 Texto colorido conforme o valor do combobox.
             </div>
@@ -66,12 +66,49 @@
               
               <br>
 
-              <p>Style Binding <small><i>[mostrando apenas no danger]</i></small></p>
+              <p>Aula 10 - Style Binding <small><i>[mostrando apenas no danger]</i></small></p>
               <div class="alert alert-danger" role="alert"             
                 [style.display]="classe.value == 'alert-danger' ? 'block' : 'none' " >
                     Style Binding !!!
               </div>
         </div>
     </article>
+-->
+    <hr/>
+    <br/>
+    <article>
+        <h3>Aula 11 - Event Binding</h3>        
 
+        <div>
+            <button type="button" (click)="botaoClicado()"
+                class="btn btn-outline-info btn-rounded">
+                Me clique!
+            </button>
+        </div>
+        
+        <br/>
+        <div>
+
+            <input type="text" class="form-control"
+                (keyup)="onKeyUp($event)" 
+                (keyup.enter)="salvarValor(campoInput.value)"
+                (blur)="salvarValor(campoInput.value)" 
+                #campoInput />
+            
+            <p>Valor atual: <b> {{ valorAtual }}</b></p>
+            <p>Valor salvo: <b> {{ valorSalvo }}</b></p>
+        
+            <br>
+
+            <span
+                (mouseover)="onMouseOverOut()"
+                (mouseout)="onMouseOverOut()"
+                [class.font-weight-bold]="isMouseOver"
+                [class.text-danger]="isMouseOver"
+                [class.text-uppercase]="isMouseOver"
+                > Passe o mouse sobre mim </span>
+        </div>
+
+    </article>
+    
 </section>
