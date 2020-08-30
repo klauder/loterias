@@ -1,52 +1,54 @@
-<article>
-    <h3>Aula 12 - Two-way databinding</h3>        
+<section class="property-data-binding">
+    
+    <article>
+        <h3>Aula 12 - Two-way databinding</h3>        
 
-    <div>
-        <p>Binding propriedade e evento</p>
-        <input type="text" class="form-control"
-            [value]="nome" 
-            (input) = "nome = $event.target.value"
-        />
+        <div>
+            <p>Binding propriedade e evento</p>
+            <input type="text" class="form-control"
+                [value]="nome" 
+                (input) = "nome = $event.target.value"
+            />
 
-        <p>Binding propriedade e evento [ngModel]</p>
-        <input type="text" class="form-control"
-            [ngModel]="nome" 
-            (ngModelChange) = "nome = $event"
-        />
-        
-        <p>Two-way databinding</p>
-        <input type="text" class="form-control"
-            [(ngModel)]="nome"
-        />
-
-        <p>bindon-ngModel <small>angular faz de baixo dos p anos</small>
+            <p>Binding propriedade e evento [ngModel]</p>
+            <input type="text" class="form-control"
+                [ngModel]="nome" 
+                (ngModelChange) = "nome = $event"
+            />
+            
+            <p>Two-way databinding</p>
             <input type="text" class="form-control"
                 [(ngModel)]="nome"
             />
 
-        <br/>
-        <p> Você digitou: <b> {{ nome }}</b></p>
+            <p>bindon-ngModel <small>angular faz de baixo dos p anos</small>
+                <input type="text" class="form-control"
+                    [(ngModel)]="nome"
+                />
+            <p> Você digitou: <b> {{ nome }}</b></p>
 
-        <hr/>
-        <br/>
-        <input type="text" class="form-control"
-            [(ngModel)]="pessoa.nome"
-        />
-        
-        <input type="text" class="form-control"
-            [(ngModel)]="pessoa.idade"
-        />
+            <hr/>
+            
+            <h5><i>Objetos aninhados</i></h5>
+            <input type="text" class="form-control"
+                [(ngModel)]="pessoa.nome"
+            />
+            
+            <input type="text" class="form-control"
+                [(ngModel)]="pessoa.idade"
+            />
 
-        <input type="text" class="form-control"
-            [(ngModel)]="pessoa.endereco.cidade"
-        />
+            <input type="text" class="form-control"
+                [(ngModel)]="pessoa.endereco.cidade"
+            />
 
-        <input type="text" class="form-control"
-            [(ngModel)]="pessoa.endereco.estado"
-        />
+            <input type="text" class="form-control"
+                [(ngModel)]="pessoa.endereco.estado"
+            />
 
-        <p> Seu nome é: <b> {{ pessoa.nome }}</b>, 
-            você tem {{ pessoa.idade }} anos 
-            mora em {{ pessoa.endereco.cidade }} / {{ pessoa.endereco.estado }}. </p>
-    </div>
-</article>
+            <p> Seu nome é: <b> {{ pessoa.nome }}</b>, 
+                você tem {{ pessoa.idade }} anos 
+                mora em {{ pessoa.endereco.cidade }} / {{ pessoa.endereco.estado }}. </p>
+        </div>
+    </article>
+</section>  
