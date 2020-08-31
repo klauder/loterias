@@ -17,6 +17,7 @@ export class DataBindingComponent implements OnInit {
   nomeCurso: string = 'Curso de Angular';
   nomeDoCurso2: string = 'Curso 2';
   nomeDoCurso3: string = 'Curso 3';
+  valorInicial=15;
 
   getValor(){
     return 1;
@@ -41,6 +42,10 @@ export class DataBindingComponent implements OnInit {
 
   onMouseOverOut(){
     this.isMouseOver = !this.isMouseOver;
+  }
+
+  onMudouValor(evento){
+    console.log(evento.novoValor);
   }
 
   constructor() { }

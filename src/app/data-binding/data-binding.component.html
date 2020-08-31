@@ -118,11 +118,17 @@
 
 <section class="property-data-binding">
     <article>
-        <h3>Input/Output Properties</h3>
+        <h3>Input Properties</h3>
         
         <app-curso [nomeCurso]="nomeCurso"></app-curso>
         <app-curso [nome2]="nomeDoCurso2"></app-curso>
         <app-curso [nome3]="nomeDoCurso3"></app-curso>
+
+        <h3>Output Properties</h3>
         
+        <app-contador [valor]="valorInicial" 
+            (mudouValor)="onMudouValor($event)"
+        ></app-contador>
     </article>
 </section>
+
