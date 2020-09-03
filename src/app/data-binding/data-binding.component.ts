@@ -8,43 +8,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataBindingComponent implements OnInit {
 
-  url: string = 'https://klauderdias.com';
-  cursoAngular: boolean = true;
+  url = 'https://klauderdias.com';
+  cursoAngular = true;
   urlImagem = 'http://lorempixel.com/400/200/nature/';
-  valorAtual: string ='';
-  valorSalvo: string = '';
-  isMouseOver: boolean = false;
-  nomeCurso: string = 'Curso de Angular';
-  nomeDoCurso2: string = 'Curso 2';
-  nomeDoCurso3: string = 'Curso 3';
-  valorInicial=15;
+  valorAtual = '';
+  valorSalvo = '';
+  isMouseOver = false;
+  nomeCurso = 'Curso de Angular';
+  nomeDoCurso2 = 'Curso 2';
+  nomeDoCurso3 = 'Curso 3';
+  valorInicial = 15;
 
-  getValor(){
+  getValor(): number {
     return 1;
   }
 
-  getCurtirCurso(){
+  getCurtirCurso(): boolean {
     return true;
   }
 
-  botaoClicado(){
+  botaoClicado(): void {
     alert('Botão clicado.');
   }
 
-  onKeyUp(evento: KeyboardEvent) {
-    //console.log((<HTMLInputElement>evento.target).value);
+  onKeyUp(evento: KeyboardEvent): void {
+    // console.log((<HTMLInputElement>evento.target).value);
     this.valorAtual = (<HTMLInputElement>evento.target).value;
   }
 
-  salvarValor(valor){
+  salvarValor(valor): void {
     this.valorSalvo = valor;
   }
 
-  onMouseOverOut(){
+  onMouseOverOut(): void {
     this.isMouseOver = !this.isMouseOver;
   }
 
-  onMudouValor(evento){
+  onMudouValor(evento): void {
     console.log(evento.novoValor);
   }
 

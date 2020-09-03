@@ -1,7 +1,4 @@
-import { Component,
-  OnInit, OnChanges, DoCheck, 
-  AfterContentInit, AfterContentChecked, AfterViewInit, 
-  AfterViewChecked, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, Input } from '@angular/core';
 
 @Component({
   selector: 'app-ciclo',
