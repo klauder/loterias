@@ -5,9 +5,7 @@ import { Component, OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentCh
   templateUrl: './ciclo.component.html',
   styleUrls: ['./ciclo.component.css']
 })
-export class CicloComponent implements OnChanges, OnInit, 
-  DoCheck, AfterContentInit, AfterContentChecked,
-  AfterViewInit, AfterViewChecked, OnDestroy {
+export class CicloComponent implements OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
 
   @Input() valorInicial: number = 10;
 
@@ -25,37 +23,37 @@ export class CicloComponent implements OnChanges, OnInit,
     this.log('ngOnInit');
   }
 
-  //A cada ciclo de verificação de mudanças
+  // A cada ciclo de verificação de mudanças
   ngDoCheck(): void {
     this.log('ngDoCheck');
   }
 
-  //depois de inserir conteúdo externo na view 
+  // Depois de inserir conteúdo externo na view 
   ngAfterContentInit(): void {
     this.log('ngAfterContentInit');
   }
 
-  //verifica o conteúdo inserido
+  // Verifica o conteúdo inserido
   ngAfterContentChecked(): void {
     this.log('ngAfterContentChecked');
   }
     
-  //verifica o conteúdo / conteúdo filh o depois de inserido
+  // Verifica o conteúdo / conteúdo filh o depois de inserido
   ngAfterViewInit(): void {
     this.log('ngAfterViewInit');
   }
 
-  //verifica o conteúdo / conteúdo filho depois de inserido
+  // Verifica o conteúdo / conteúdo filho depois de inserido
   ngAfterViewChecked(): void {
     this.log('ngAfterViewChecked');
   }
 
-  //antes da diretiva/component ser destruído
+  // Antes da diretiva/component ser destruído
   ngOnDestroy(): void {
     this.log('ngOnDestroy ');
   }
 
-  //Isso é para não estar repetindo el console.log
+  // Isso é para não estar repetindo el console.log
   private log (hook: string){
     console.log(hook);
   }
