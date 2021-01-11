@@ -1,0 +1,42 @@
+
+<hr/>
+
+<section class="diretivas">
+    <article>
+        <h5> *ngIf </h5>
+            <p>
+                Lista de cursos:
+            </p>            
+        <!-- [hidden] é recomendado para arvores pequenas, mas deve ter cuidado,
+                porque o código sempre estára presente no HTML oculto ou não -->
+        <div [hidden]="!mostrarCursos" class="text-danger">
+            Não existem cursos cadastrados.
+        </div>        
+                 
+        <div [hidden]="mostrarCursos" class="text-danger">
+            Cursos ...
+        </div>  
+        
+    </article>
+
+    <article>
+        <h5> Melhor opção - *ngTemplate ngIf/ngElse </h5>
+        <p>
+            Lista de cursos:
+        </p>     
+                       
+        <ng-template [ngIf]="!mostrarCursos" [ngIfElse]="loggedOut">
+            <div>
+                Cursos ...
+            </div>
+          </ng-template>
+          
+          <ng-template #loggedOut>
+            <div class="text-danger font-weight-bold">
+                Não existem cursos cadastrados. #ng-template
+            </div>
+          </ng-template>
+    </article>
+
+    <button (click)="onMostrarCursos()" class="btn btn-success">Mostrar ou esconder cursos</button>
+</section>
