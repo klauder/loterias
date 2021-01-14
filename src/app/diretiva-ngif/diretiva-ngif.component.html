@@ -1,6 +1,4 @@
 
-<hr/>
-
 <section class="diretivas">
     <article>
         <h5> *ngIf </h5>
@@ -9,23 +7,20 @@
             </p>            
         <!-- [hidden] é recomendado para arvores pequenas, mas deve ter cuidado,
                 porque o código sempre estára presente no HTML oculto ou não -->
-        <div [hidden]="!mostrarCursos" class="text-danger">
-            Não existem cursos cadastrados.
+        <div [hidden]="mostrarCursos" class="text-danger">
+            Não existem cursos cadastrados. #hidden
         </div>        
                  
-        <div [hidden]="mostrarCursos" class="text-danger">
+        <div [hidden]="!mostrarCursos">
             Cursos ...
         </div>  
-        
-    </article>
-
-    <article>
-        <h5> Melhor opção - *ngTemplate ngIf/ngElse </h5>
+        <br />
+        <h5>Removendo o * e usando ng-template (Melhor opção - *ngTemplate ngIf/ngElse) </h5>
         <p>
             Lista de cursos:
         </p>     
                        
-        <ng-template [ngIf]="!mostrarCursos" [ngIfElse]="loggedOut">
+        <ng-template [ngIf]="mostrarCursos" [ngIfElse]="loggedOut">
             <div>
                 Cursos ...
             </div>
@@ -38,5 +33,6 @@
           </ng-template>
     </article>
 
-    <button (click)="onMostrarCursos()" class="btn btn-success">Mostrar ou esconder cursos</button>
+    <br />
+    <button (click)="onMostrarCursos()" [ngClass]="mostrarCursos ? 'btn btn-danger': 'btn btn-success'" [title]="mostrarCursos ? 'Ocultar': 'Mostrar'" >{{ mostrarCursos ? "Ocultar" : "Mostrar" }}</button>
 </section>
