@@ -34,5 +34,16 @@
     </article>
 
     <br />
-    <button (click)="onMostrarCursos()" [ngClass]="mostrarCursos ? 'btn btn-danger': 'btn btn-success'" [title]="mostrarCursos ? 'Ocultar': 'Mostrar'" >{{ mostrarCursos ? "Ocultar" : "Mostrar" }}</button>
+    <button 
+        (click)="onMostrarCursos()" 
+        class="btn"
+        [ngClass]="{
+            'btn-danger': mostrarCursos,
+            'btn-success': !mostrarCursos
+         }" 
+         [title]="!mostrarCursos ? 'Ocultar': 'Mostrar'"
+         >
+            {{ mostrarCursos ? "Ocultar" : "Mostrar" }}         
+    </button>
+    
 </section>
