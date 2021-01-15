@@ -1,0 +1,43 @@
+
+<section>
+    <article>
+        <h5>property bind</h5>
+        <div class="row">
+            <div class="offset-md-6 offset-xl-8 col-xl-3 col-lg-4 col-sm-6">
+                <h1>
+                  <i class="mdi"
+                      [class.mdi-star-outline]="!favorito"
+                      [class.mdi-star]="favorito"
+                      [class.text-danger]="favorito"
+                      (click)="onClick()"
+                  ></i>
+              </h1>
+              </div>
+        </div>
+        
+
+        <h5>ngClass</h5>
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <h1>
+                  <i 
+                      [ngClass]="!favorito ? 'mdi mdi-star-outline': 'mdi mdi-star text-danger'"
+                      (click)="onClick()"
+                  ></i>
+                </h1>
+              </div>
+              <div class="col-xl-3 col-lg-4 col-sm-6">
+                <h1>
+                  <i class="mdi"
+                      (click)="onClick()"
+                      [ngClass]="{
+                          'mdi-star-outline': !favorito, 
+                          'mdi-star text-danger': favorito
+                        }"
+                  ></i>
+              </h1>
+              </div>
+        </div>
+        
+    </article>
+</section>
