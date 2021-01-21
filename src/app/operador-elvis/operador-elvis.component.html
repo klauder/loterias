@@ -1,0 +1,12 @@
+
+<p> <b>Descrição:</b> {{ tarefa.descricao }}</p>
+
+<!-- <p> <b>Responsável:</b> {{ tarefa.responsavel.nome }}</p>  /Não verifica se o objeto é null e dá um erro
+
+    <p><b>Responsável:</b> {{ tarefa.responsavel != null ? tarefa.responsalve.nome : '' }}</p>
+
+-->
+<p><strong>Operador Elvis</strong></p>
+<p> <b>Responsável (elvis - nulo):</b> {{ tarefa.responsavel?.usuario?.nome }}</p>
+
+<p> <b>Responsável (elvis - não nulo):</b> {{ tarefa_elvis.responsavel?.usuario?.nome }}</p>
