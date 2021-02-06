@@ -2,11 +2,24 @@
     Texto com fundo amarelo.
 </p>
 
-<button fundoAmarelo>Botão com fundo amarelo</button>
+<p>
+    <button fundoAmarelo>
+        Botão com fundo amarelo
+    </button>
+        
+    <br />
+    Obs.: O fundo amarelo está sendo aplicado somente no botão porque coloquei a tag button no seletor da diretiva button[fundoAmarelo]
+    
+</p>
 
-<br />
-<p> Obs.: O fundo amarelo está sendo aplicado somente no botão porque coloquei a tag button no seletor da diretiva button[fundoAmarelo]/p>
 
 <p highlightMouse>
     Texto com highlight quando passo mouse.
 </p>
+
+<p [highlight]="'red'" [defaultColor]="'grey'">
+
+    // Diretiva e Input propert com o mesmo nome
+    Texto com highlight com cores customizadas.
+</p>
+
