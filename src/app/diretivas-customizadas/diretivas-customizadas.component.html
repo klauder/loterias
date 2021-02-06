@@ -23,3 +23,33 @@
     Texto com highlight com cores customizadas.
 </p>
 
+<div *ngIf="mostrarCursos">
+    Lista de cursos aqui.
+</div>
+<div *ngElse="mostrarCursos" class="text-danger font-weight-bold">
+    Não existem cursos para serem listados.
+</div>
+
+<br>
+<button (click)="onMostrarCursos()">
+    Mostrar/Esconder cursos
+</button>
+
+<ng-template [ngElse]="mostrarCursos">
+    <div class="text-danger font-weight-bold">
+        Não existem cursos cadastrados. [ngElse]
+    </div>
+</ng-template>
+
+<p>
+    <br>
+    Não funcionou com template tem que ser ng-template, por causa da versão do 
+        Angular que estou utilizando.    
+</p>
+
+<ul>
+    <li>Angular CLI: 10.0.7</li>
+    <li>Node: 12.18.3</li>
+    <li>Angular: 10.0.14</li>
+</ul>
+
