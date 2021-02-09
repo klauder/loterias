@@ -11,10 +11,11 @@ export class CursosComponent implements OnInit {
 
   
   cursos: string[]=[];
-  cursosService: CursosService;
+  //cursosService: CursosService;
 
-  constructor() {
-    this.cursosService = new CursosService(); //instância manual NÃO RECOMENDADO (SEM INJEÇÃO DE DEPENDÊNCIA)
+  constructor(private cursosService: CursosService) {
+    //this.cursosService = new CursosService(); //instância manual NÃO RECOMENDADO (SEM INJEÇÃO DE DEPENDÊNCIA)
+    this.cursosService = cursosService;
    }
 
   ngOnInit(): void {
