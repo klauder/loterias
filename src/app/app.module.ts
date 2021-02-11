@@ -1,3 +1,4 @@
+import { LogService } from './shared/log.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -27,7 +28,7 @@ import { CursosService } from './servicos/cursos/cursos.service';
 //import { CriarCursoComponent } from './servicos/criar-curso/criar-curso.component';
 import { CriarCursoModule } from './servicos/criar-curso/criar-curso.module';
 import { CursosModule } from './servicos/cursos/cursos.module';
-
+ 
 @NgModule({
   declarations: [
     AppComponent,
