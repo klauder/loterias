@@ -6,7 +6,7 @@ import { CursosService } from '../cursos/cursos.service';
   selector: 'app-criar-curso',
   templateUrl: './criar-curso.component.html',
   styleUrls: ['./criar-curso.component.css'],
-  //providers: [CursosService] //Dessa forma, o serviço é acessado somente por esse componente
+  providers: [CursosService] //Dessa forma, o serviço é acessado somente por esse componente
 })
 export class CriarCursoComponent implements OnInit {
 

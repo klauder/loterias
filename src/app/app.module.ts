@@ -58,7 +58,7 @@ import { CursosModule } from './servicos/cursos/cursos.module';
     CriarCursoModule,
     CursosModule
   ],
-  providers: [CursosService], //onde ficam os serviços para escopo global
+  //providers: [CursosService], //onde ficam os serviços para escopo global
   bootstrap: [AppComponent]
 })
 export class AppModule { }

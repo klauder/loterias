@@ -6,7 +6,7 @@ import { CursosService } from './cursos.service';
   selector: 'app-cursos',
   templateUrl: './cursos.component.html',
   styleUrls: ['./cursos.component.css'],
-  //providers: [CursosService] //Dessa forma, o serviço é acessado somente por esse componente
+  providers: [CursosService] //Dessa forma, o serviço é acessado somente por esse componente
 })
 export class CursosComponent implements OnInit {
 
@@ -21,6 +21,21 @@ export class CursosComponent implements OnInit {
 
   ngOnInit(): void {
     this.cursos = this.cursosService.getCursos();
+
+    /*
+    this.cursosService.emitirCursoCriado.subscribe(
+
+      curso => console.log(curso)
+      
+      /*function(curso){
+        console.log(curso);
+      }*/
+    //);
+    
+    //Estou acessando a instância de CursosService, para que instâncias diferentes possam se comunicar entre si
+    CursosService.criouNovoCurso.subscribe(
+      curso => this.cursos.push(curso)
+    );
   }
 
 }
