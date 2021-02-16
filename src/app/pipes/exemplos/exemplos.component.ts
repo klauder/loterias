@@ -16,9 +16,18 @@ export class ExemplosComponent implements OnInit {
     url: 'http://a.co/glqjpRP'
   }; 
 
+  livros: string[] = ['Angular 2', 'Java','Phonegap','Linux'];
+
+  filtro: string;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  addLivro(valor){
+    //console.log(valor);
+    this.livros.push(valor);
   }
 
 }

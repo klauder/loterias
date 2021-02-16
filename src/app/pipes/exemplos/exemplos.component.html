@@ -14,3 +14,21 @@
 <p> Url: {{ livro.url }}</p>
 <br>
 <p> Livro: {{ livro | json }}</p>
+
+<br>
+<h4>Filtros Pipe</h4>
+<ul>
+    <em>NÃO FAÇA FILTRO DE ARRAY DESSA FORMA EM PRODUÇÃO.
+        ISSO É APENAS EXEMPLO DIDÁTICO! [ngFor="let liv of livros | filtroArray]
+    </em>
+    <br>
+    <br>
+    <input type="text" [(ngModel)]="filtro" placeholder="Filtro">
+    
+    <input type="text" #novoValor placeholder="Curso">
+    <button (click)="addLivro(novoValor.value)">Add Livro</button>
+
+    <li *ngFor="let liv of livros | filtroArray:filtro">
+        {{ liv }}
+    </li>
+</ul>

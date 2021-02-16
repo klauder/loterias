@@ -35,6 +35,7 @@ import ptBr from '@angular/common/locales/pt';
 import esEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { SettingsService } from './servicos/settings.service';
+import { FiltroArrayPipe } from './pipes/filtro-array.pipe';
 
 registerLocaleData(ptBr)
 registerLocaleData(esEs)
@@ -61,6 +62,7 @@ registerLocaleData(esEs)
     NgElseDirective,
     ExemplosComponent,
     CamelCasePipe,
+    FiltroArrayPipe,
     //CursosComponent,
     //CriarCursoComponent
   ],
