@@ -1,6 +1,6 @@
 import { LogService } from './shared/log.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,7 +30,16 @@ import { CriarCursoModule } from './servicos/criar-curso/criar-curso.module';
 import { CursosModule } from './servicos/cursos/cursos.module';
 import { ExemplosComponent } from './pipes/exemplos/exemplos.component';
 import { CamelCasePipe } from './pipes/camel-case.pipe';
- 
+
+import ptBr from '@angular/common/locales/pt';
+import esEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+import { SettingsService } from './servicos/settings.service';
+
+registerLocaleData(ptBr)
+registerLocaleData(esEs)
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +71,19 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
     MeuFormModule,
     CriarCursoModule,
     CursosModule
+  ],
+  providers: [
+    SettingsService,
+    {
+      provide: LOCALE_ID,
+      deps:[SettingsService],
+      useFactory: (settingsService) => settingsService.getLocale()
+    }
+    /*
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'  
+    }*/
   ],
   //providers: [CursosService], //onde ficam os serviços para escopo global
   bootstrap: [AppComponent]
