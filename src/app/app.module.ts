@@ -29,6 +29,7 @@ import { CursosService } from './servicos/cursos/cursos.service';
 import { CriarCursoModule } from './servicos/criar-curso/criar-curso.module';
 import { CursosModule } from './servicos/cursos/cursos.module';
 import { ExemplosComponent } from './pipes/exemplos/exemplos.component';
+import { CamelCasePipe } from './pipes/camel-case.pipe';
  
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ExemplosComponent } from './pipes/exemplos/exemplos.component';
     HighlightDirective,
     NgElseDirective,
     ExemplosComponent,
+    CamelCasePipe,
     //CursosComponent,
     //CriarCursoComponent
   ],
