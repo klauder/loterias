@@ -28,6 +28,7 @@ import { CursosService } from './servicos/cursos/cursos.service';
 //import { CriarCursoComponent } from './servicos/criar-curso/criar-curso.component';
 import { CriarCursoModule } from './servicos/criar-curso/criar-curso.module';
 import { CursosModule } from './servicos/cursos/cursos.module';
+import { ExemplosComponent } from './pipes/exemplos/exemplos.component';
  
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { CursosModule } from './servicos/cursos/cursos.module';
     HighlightMouseDirective,
     HighlightDirective,
     NgElseDirective,
+    ExemplosComponent,
     //CursosComponent,
     //CriarCursoComponent
   ],

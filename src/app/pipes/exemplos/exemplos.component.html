@@ -1,0 +1,13 @@
+
+<h5>Exemplos Pipe</h5>
+
+//A ordem de execução dos Pipes é a mesma ordem da declaração
+
+<p> Titulo: {{ livro.titulo | uppercase | lowercase }}</p> 
+<p> Estrelas: {{ livro.avaliacao | number: '2.3' }}</p>
+<p> Páginas: {{ livro.numeroPaginas | number}}</p>
+<p> Preço: {{ livro.preco | currency: 'BRL' }}</p>
+<p> Data Lançamento: {{ livro.dataLancamento | date: 'dd/MMM/yyyy' }}</p>
+<p> Url: {{ livro.url }}</p>
+<br>
+<p> Livro: {{ livro | json }}</p>
