@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { interval } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-exemplos',
@@ -16,9 +18,16 @@ export class ExemplosComponent implements OnInit {
     url: 'http://a.co/glqjpRP'
   }; 
 
-  livros: string[] = ['Angular 2', 'Java','Phonegap','Linux'];
+  livros: string[] = ['Angular 2', 'Java','Phonegap','Linux'  ];
 
   filtro: string;
+
+  valorAsync = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('Valor assíncrono promise'), 2000)
+  });
+  
+  valorAsync2 = interval(4000).pipe(
+    map(valor => 'Valor assíncrono 2 interval'));
 
   constructor() { }
 
