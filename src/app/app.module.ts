@@ -37,6 +37,10 @@ import { registerLocaleData } from '@angular/common';
 import { SettingsService } from './servicos/settings.service';
 import { FiltroArrayPipe } from './pipes/filtro-array.pipe';
 import { FiltroArrayImpuroPipe } from './pipes/filtro-array-impuro.pipe';
+import { RotasComponent } from './rotas/rotas.component';
+import { CoursesComponent } from './rotas/courses/courses.component';
+import { LoginComponent } from './rotas/login/login.component';
+import { HomeComponent } from './rotas/home/home.component';
 
 registerLocaleData(ptBr)
 registerLocaleData(esEs)
@@ -65,6 +69,10 @@ registerLocaleData(esEs)
     CamelCasePipe,
     FiltroArrayPipe,
     FiltroArrayImpuroPipe,
+    RotasComponent,
+    CoursesComponent,
+    LoginComponent,
+    HomeComponent,
     //CursosComponent,
     //CriarCursoComponent
   ],
