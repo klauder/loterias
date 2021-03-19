@@ -41,6 +41,7 @@ import { RotasComponent } from './rotas/rotas.component';
 import { CoursesComponent } from './rotas/courses/courses.component';
 import { LoginComponent } from './rotas/login/login.component';
 import { HomeComponent } from './rotas/home/home.component';
+import { CourseDetailsComponent } from './rotas/course-details/course-details.component';
 
 registerLocaleData(ptBr)
 registerLocaleData(esEs)
@@ -73,6 +74,7 @@ registerLocaleData(esEs)
     CoursesComponent,
     LoginComponent,
     HomeComponent,
+    CourseDetailsComponent,
     //CursosComponent,
     //CriarCursoComponent
   ],
