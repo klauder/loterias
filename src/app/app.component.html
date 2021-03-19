@@ -41,4 +41,18 @@
 
 <app-exemplos></app-exemplos>
 -->
-<router-outlet></router-outlet>
+<!-- Compiled and minified CSS -->
+
+<nav>
+    <div class="nav-wrapper">
+      <a routerLink="" routerLinkActive="router-link-active"  class="brand-logo right">Logo</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a [routerLink]="['/login']" routerLinkActive="router-link-active" > Login</a></li>
+        <li><a [routerLink]="['/courses']" routerLinkActive="router-link-active" >Courses</a></li>        
+      </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
