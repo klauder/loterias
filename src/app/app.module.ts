@@ -1,3 +1,4 @@
+import { CoursesService } from './rotas/courses/courses.service';
 import { LogService } from './shared/log.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -42,6 +43,7 @@ import { CoursesComponent } from './rotas/courses/courses.component';
 import { LoginComponent } from './rotas/login/login.component';
 import { HomeComponent } from './rotas/home/home.component';
 import { CourseDetailsComponent } from './rotas/course-details/course-details.component';
+import { CourseNotFoundComponent } from './rotas/course-not-found/course-not-found.component';
 
 registerLocaleData(ptBr)
 registerLocaleData(esEs)
@@ -75,6 +77,7 @@ registerLocaleData(esEs)
     LoginComponent,
     HomeComponent,
     CourseDetailsComponent,
+    CourseNotFoundComponent,
     //CursosComponent,
     //CriarCursoComponent
   ],
@@ -92,7 +95,8 @@ registerLocaleData(esEs)
       provide: LOCALE_ID,
       deps:[SettingsService],
       useFactory: (settingsService) => settingsService.getLocale()
-    }
+    },
+    CoursesService
     /*
     {
       provide: LOCALE_ID,
