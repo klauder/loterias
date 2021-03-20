@@ -2,6 +2,10 @@
 <p> 
     Lista de Courses
 </p>
+<p>
+    Página: {{ pagina }}
+</p>
+
 <div class="collection">
     <a class="collection-item" 
     *ngFor="let course of courses"
@@ -9,3 +13,10 @@
     {{ course.nome }}
 </a>
 </div>
+<!--
+<ng-template [ngIf]="pagina > 1">
+    <button (click)="prevPage()" [hidden]="pagina > 1">Anterior</button>
+</ng-template>
+-->
+<button [disabled]="pagina < 2" (click)="prevPage()" class="btn btn-small teal lighten-3" title="Anterior"> <i class="material-icons">navigate_before</i></button>
+<button (click)="nextPage()" class="btn btn-small teal lighten-3"><i class="material-icons" title="Próxima">navigate_next</i></button>
