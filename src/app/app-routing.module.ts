@@ -7,7 +7,7 @@ import { CoursesComponent } from './rotas/courses/courses.component';
 import { CourseDetailsComponent } from './rotas/course-details/course-details.component';
 import { CourseNotFoundComponent } from './rotas/course-not-found/course-not-found.component';
 
-const routes: Routes = [
+const appRoutes: Routes = [
   { path: 'courses', component: CoursesComponent },
   { path: 'course/:id', component: CourseDetailsComponent },
   { path: 'login', component: LoginComponent },
@@ -17,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
