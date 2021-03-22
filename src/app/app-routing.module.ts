@@ -4,8 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './rotas/home/home.component';
 import { LoginComponent } from './rotas/login/login.component';
 import { CoursesComponent } from './rotas/courses/courses.component';
-import { CourseDetailsComponent } from './rotas/course-details/course-details.component';
-import { CourseNotFoundComponent } from './rotas/course-not-found/course-not-found.component';
+import { CourseDetailsComponent } from './rotas/courses/course-details/course-details.component';
+import { CourseNotFoundComponent } from './rotas/courses/course-not-found/course-not-found.component';
 
 const appRoutes: Routes = [
   { path: 'courses', component: CoursesComponent },

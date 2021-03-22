@@ -1,4 +1,3 @@
-import { CoursesService } from './rotas/courses/courses.service';
 import { LogService } from './shared/log.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -39,11 +38,13 @@ import { SettingsService } from './servicos/settings.service';
 import { FiltroArrayPipe } from './pipes/filtro-array.pipe';
 import { FiltroArrayImpuroPipe } from './pipes/filtro-array-impuro.pipe';
 import { RotasComponent } from './rotas/rotas.component';
-import { CoursesComponent } from './rotas/courses/courses.component';
 import { LoginComponent } from './rotas/login/login.component';
 import { HomeComponent } from './rotas/home/home.component';
-import { CourseDetailsComponent } from './rotas/course-details/course-details.component';
-import { CourseNotFoundComponent } from './rotas/course-not-found/course-not-found.component';
+import { CoursesModule } from './rotas/courses/courses.module';
+//import { CoursesComponent } from './rotas/courses/courses.component';
+//import { CourseDetailsComponent } from './rotas/courses/course-details/course-details.component';
+//import { CourseNotFoundComponent } from './rotas/courses/course-not-found/course-not-found.component';
+//import { CoursesService } from './rotas/courses/courses.service';
 
 registerLocaleData(ptBr)
 registerLocaleData(esEs)
@@ -73,21 +74,22 @@ registerLocaleData(esEs)
     FiltroArrayPipe,
     FiltroArrayImpuroPipe,
     RotasComponent,
-    CoursesComponent,
     LoginComponent,
     HomeComponent,
-    CourseDetailsComponent,
-    CourseNotFoundComponent,
+    //CoursesComponent,
+    //CourseDetailsComponent,
+    //CourseNotFoundComponent,
     //CursosComponent,
     //CriarCursoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     MeuFormModule,
     CriarCursoModule,
-    CursosModule
+    CursosModule,
+    CoursesModule,
+    AppRoutingModule
   ],
   providers: [
     SettingsService,
@@ -96,7 +98,7 @@ registerLocaleData(esEs)
       deps:[SettingsService],
       useFactory: (settingsService) => settingsService.getLocale()
     },
-    CoursesService
+    //CoursesService
     /*
     {
       provide: LOCALE_ID,
