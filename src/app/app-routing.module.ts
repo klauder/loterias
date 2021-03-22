@@ -3,15 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './rotas/home/home.component';
 import { LoginComponent } from './rotas/login/login.component';
-import { CoursesComponent } from './rotas/courses/courses.component';
-import { CourseDetailsComponent } from './rotas/courses/course-details/course-details.component';
-import { CourseNotFoundComponent } from './rotas/courses/course-not-found/course-not-found.component';
+//import { CoursesComponent } from './rotas/courses/courses.component';
+//import { CourseDetailsComponent } from './rotas/courses/course-details/course-details.component';
+//import { CourseNotFoundComponent } from './rotas/courses/course-not-found/course-not-found.component';
 
 const appRoutes: Routes = [
-  { path: 'courses', component: CoursesComponent },
-  { path: 'course/:id', component: CourseDetailsComponent },
+  //{ path: 'courses', component: CoursesComponent },
+  //{ path: 'course/:id', component: CourseDetailsComponent },
+  //{ path: 'courseNotFound', component: CourseNotFoundComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'courseNotFound', component: CourseNotFoundComponent },
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
 ];
