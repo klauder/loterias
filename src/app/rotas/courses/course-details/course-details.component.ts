@@ -27,6 +27,7 @@ export class CourseDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.inscricao = this.route.params.subscribe(
       (params: any) => {
+        //console.log(params);
         this.id = params['id'];
         this.course = this.courseService.getCourse(this.id);
 
@@ -34,8 +35,7 @@ export class CourseDetailsComponent implements OnInit {
           this.router.navigate(['/courseNotFound']);
           //this.router.navigate(['/courseNotFound',this.id); //Isso é se precisar enviar parametros para a rota. 
                                                               //Lembrando será preciso fazer o subscribe e unsubscribe igual que no courseDetails
-        }
-        
+        }        
       }
     );
   }
