@@ -40,8 +40,8 @@ import { FiltroArrayImpuroPipe } from './pipes/filtro-array-impuro.pipe';
 import { RotasComponent } from './rotas/rotas.component';
 import { LoginComponent } from './rotas/login/login.component';
 import { HomeComponent } from './rotas/home/home.component';
-import { CoursesModule } from './rotas/courses/courses.module';
-import { AlunosModule } from './rotas/alunos/alunos.module';
+//import { AlunosModule } from './rotas/alunos/alunos.module';
+//import { CoursesModule } from './rotas/courses/courses.module';
 //import { CoursesComponent } from './rotas/courses/courses.component';
 //import { CourseDetailsComponent } from './rotas/courses/course-details/course-details.component';
 //import { CourseNotFoundComponent } from './rotas/courses/course-not-found/course-not-found.component';
@@ -89,8 +89,8 @@ registerLocaleData(esEs)
     MeuFormModule,
     CriarCursoModule,
     CursosModule,
-    CoursesModule,
-    AlunosModule,
+    //CoursesModule,
+    //AlunosModule,
     AppRoutingModule
   ],
   providers: [

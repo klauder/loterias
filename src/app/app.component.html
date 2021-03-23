@@ -49,14 +49,20 @@
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li routerLinkActive="active"><a [routerLink]="['/login']"> Login</a></li>
         <li routerLinkActive="active"><a [routerLink]="['/courses']" [queryParams]="{p:1}" >Courses</a></li>
-        <li routerLinkActive="active"><a [routerLink]="['/course',idCurso.value]" >Course com ID</a></li>
+        <!-- <li routerLinkActive="active"><a [routerLink]="['/course',idCurso.value]" >Course com ID</a></li> -->
         <li routerLinkActive="active"><a [routerLink]="['/alunos']" >Alunos</a></li>
       </ul>
     </div>
 </nav>
 
 <div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<!--
+<div class="container">
   <p>Entre com o ID do curso</p>
   <input #idCurso>
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>
+-->

@@ -8,6 +8,8 @@ import { LoginComponent } from './rotas/login/login.component';
 //import { CourseNotFoundComponent } from './rotas/courses/course-not-found/course-not-found.component';
 
 const appRoutes: Routes = [
+  { path: 'courses', loadChildren: () => import('./rotas/courses/courses.module').then(m => m.CoursesModule)},
+  { path: 'alunos', loadChildren: () => import('./rotas/alunos/alunos.module').then(m => m.AlunosModule)},
   //{ path: 'courses', component: CoursesComponent },
   //{ path: 'course/:id', component: CourseDetailsComponent },
   //{ path: 'courseNotFound', component: CourseNotFoundComponent },

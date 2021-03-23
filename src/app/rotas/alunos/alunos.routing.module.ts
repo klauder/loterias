@@ -8,7 +8,7 @@ import { AlunosComponent } from "./alunos.component";
 // as rotas são avaliadas na ordem de declaração. 
 // as rotas Hardcoded são avaliadas primeiro do que as rotas dinâmicas
 const alunosRoutes = [
-    {path:'alunos', component: AlunosComponent, 
+    {path:'', component: AlunosComponent, 
         children: [
             {path:'novo', component: AlunoFormComponent},
             {path:':id', component: AlunoDetalheComponent},

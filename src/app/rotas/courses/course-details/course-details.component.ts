@@ -32,7 +32,7 @@ export class CourseDetailsComponent implements OnInit {
         this.course = this.courseService.getCourse(this.id);
 
         if (this.course == null) {
-          this.router.navigate(['/courseNotFound']);
+          this.router.navigate(['/courses/notFound']);  //Lazy Loading
           //this.router.navigate(['/courseNotFound',this.id); //Isso é se precisar enviar parametros para a rota. 
                                                               //Lembrando será preciso fazer o subscribe e unsubscribe igual que no courseDetails
         }        
