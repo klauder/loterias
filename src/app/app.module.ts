@@ -1,3 +1,4 @@
+import { AuthGuard } from './rotas/guards/auth.guard';
 import { AuthService } from './rotas/login/auth.service';
 import { LogService } from './shared/log.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -96,6 +97,7 @@ registerLocaleData(esEs)
   ],
   providers: [
     AuthService,
+    AuthGuard,
     SettingsService,
     {
       provide: LOCALE_ID,
