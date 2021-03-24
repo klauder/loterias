@@ -1,3 +1,4 @@
+import { AuthService } from './rotas/login/auth.service';
 import { LogService } from './shared/log.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -94,6 +95,7 @@ registerLocaleData(esEs)
     AppRoutingModule
   ],
   providers: [
+    AuthService,
     SettingsService,
     {
       provide: LOCALE_ID,
