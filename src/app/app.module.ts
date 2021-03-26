@@ -1,3 +1,5 @@
+import { AlunosGuard } from './rotas/guards/alunos.guard';
+import { CoursesGuard } from './rotas/guards/courses.guard';
 import { AuthGuard } from './rotas/guards/auth.guard';
 import { AuthService } from './rotas/login/auth.service';
 import { LogService } from './shared/log.service';
@@ -99,6 +101,8 @@ registerLocaleData(esEs)
     AuthService,
     AuthGuard,
     SettingsService,
+    CoursesGuard,
+    AlunosGuard,
     {
       provide: LOCALE_ID,
       deps:[SettingsService],
