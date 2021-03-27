@@ -10,7 +10,7 @@ import { AlunoDetalheComponent } from './aluno-detalhe/aluno-detalhe.component';
 // as rotas Hardcoded são avaliadas primeiro do que as rotas dinâmicas
 const alunosRoutes = [
     {path:'', component: AlunosComponent, 
-        CanActivateChild: [AlunosGuard],
+        canActivateChild: [AlunosGuard],
         children: [
             {path:'novo', component: AlunoFormComponent},
             {path:':id', component: AlunoDetalheComponent},
