@@ -8,7 +8,7 @@ import { AlunoFormComponent } from '../alunos/aluno-form/aluno-form.component';
 @Injectable({providedIn: 'root'})
 export class AlunosDesactivateGuard implements CanDeactivate<AlunoFormComponent> {
     
-    canDeactivate(
+    canDeactivate( 
         component: AlunoFormComponent,
         currentRoute: ActivatedRouteSnapshot, 
         currentState: RouterStateSnapshot
