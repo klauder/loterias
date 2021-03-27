@@ -12,13 +12,14 @@ export class AlunosGuard implements CanActivateChild {
 
         //console.log(route);
         //console.log(state);
-        console.log('alunos canActivateChild');
-
+        
+        /* Foi preciso comentar o if para que funcione a aula 66
         if (state.url.includes('editar')){
             alert('Usuário não tem permissão para acessar essa página.')
             return false;
             //return Observable.call(false);
-        }
+        }*/
+
         return true;
     }
 }
