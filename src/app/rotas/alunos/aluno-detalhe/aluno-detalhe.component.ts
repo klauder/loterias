@@ -2,6 +2,7 @@ import { AlunosService } from './../alunos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Subscription, interval } from 'rxjs';
+import { Aluno } from '../aluno';
 
 @Component({
   selector: 'app-aluno-detalhe',
@@ -10,7 +11,7 @@ import { Subscription, interval } from 'rxjs';
 })
 export class AlunoDetalheComponent implements OnInit {
 
-  aluno: any;
+  aluno: Aluno;
   inscricao: Subscription;
 
   constructor(
@@ -20,6 +21,7 @@ export class AlunoDetalheComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    /*
     this.inscricao = this.route.params.subscribe(
       (params: any) => {
         //console.log(params);
@@ -28,6 +30,14 @@ export class AlunoDetalheComponent implements OnInit {
         if (this.aluno == null) {
           this.aluno = {};
         }      
+      }
+    );*/
+    console.log('ngOnInit: AlunoDetalheComponent');
+    this.inscricao = this.route.data.subscribe(
+      (info: {alunoResolverInfo: Aluno} ) => {
+        //console.log(info);
+        console.log('Recebendo o obj Aluno do resolver');
+        this.aluno = info.alunoResolverInfo; // esse é o parâmetro que passamos na rota do resolver
       }
     );
   }

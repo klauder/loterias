@@ -1,3 +1,4 @@
+import { AlunoDetalheResolver } from './guards/aluno-detalhe.resolver';
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
@@ -14,7 +15,11 @@ const alunosRoutes = [
         canActivateChild: [AlunosGuard],
         children: [
             {path:'novo', component: AlunoFormComponent},
-            {path:':id', component: AlunoDetalheComponent},
+            {
+                path:':id', 
+                component: AlunoDetalheComponent,
+                resolve: {alunoResolverInfo: AlunoDetalheResolver}
+            },
             {
                 path:':id/editar', 
                 component: AlunoFormComponent,
