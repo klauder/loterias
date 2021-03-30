@@ -44,6 +44,7 @@ import { FiltroArrayImpuroPipe } from './pipes/filtro-array-impuro.pipe';
 import { RotasComponent } from './rotas/rotas.component';
 import { LoginComponent } from './rotas/login/login.component';
 import { HomeComponent } from './rotas/home/home.component';
+import { PageNotFoundComponent } from './rotas/page-not-found/page-not-found.component';
 //import { AlunosModule } from './rotas/alunos/alunos.module';
 //import { CoursesModule } from './rotas/courses/courses.module';
 //import { CoursesComponent } from './rotas/courses/courses.component';
@@ -81,6 +82,7 @@ registerLocaleData(esEs)
     RotasComponent,
     LoginComponent,
     HomeComponent,
+    PageNotFoundComponent,
     //CoursesComponent,
     //CourseDetailsComponent,
     //CourseNotFoundComponent,

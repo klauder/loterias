@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './rotas/page-not-found/page-not-found.component';
 import { AlunosGuard } from './rotas/guards/alunos.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -29,16 +30,16 @@ const appRoutes: Routes = [
   //{ path: 'course/:id', component: CourseDetailsComponent },
   //{ path: 'courseNotFound', component: CourseNotFoundComponent },
   { path: 'login', component: LoginComponent },
+
   { 
     path: 'home', 
     component: HomeComponent,
     canActivate: [AuthGuard]
   },
   { 
-    path: '', 
-    component: HomeComponent,
-    canActivate: [AuthGuard]
+    path: '', redirectTo:'/home', pathMatch:'full'
   },
+  { path:'**', component:PageNotFoundComponent } //, canActivate: [AuthGuard] } //isso é para redirecionar para a pagina de login nas rotas inexistentes
 ];
 
 @NgModule({
