@@ -9,9 +9,11 @@ export class TemplateFormComponent implements OnInit {
 
   usuario: any = {
     nome: 'Klauder Dias',
-    email: 'klauder@email.com'
+    email: 'klauder@gmail.com',
+    nome2: 'Não muda valores',
+    email2: 'teste@gmail.com'
   }
-
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -21,6 +23,6 @@ export class TemplateFormComponent implements OnInit {
   // [ngModel] Property Binding é para quando necessito SOMENTE INICIALIZAR o campo com um valor que NÃO SERÁ ATUALIZADO
   onSubmit(form){
     console.log(form);
-    console.log(this.usuario);    
+    console.log(this.usuario);     
   }
 }

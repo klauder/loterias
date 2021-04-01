@@ -1,3 +1,4 @@
+import { TemplateFormModule } from './formularios/template-form/template-form.module';
 import { AlunosGuard } from './rotas/guards/alunos.guard';
 import { CoursesGuard } from './rotas/guards/courses.guard';
 import { AuthGuard } from './rotas/guards/auth.guard';
@@ -45,7 +46,6 @@ import { RotasComponent } from './rotas/rotas.component';
 import { LoginComponent } from './rotas/login/login.component';
 import { HomeComponent } from './rotas/home/home.component';
 import { PageNotFoundComponent } from './rotas/page-not-found/page-not-found.component';
-import { TemplateFormComponent } from './formularios/template-form/template-form.component';
 import { DataFormComponent } from './formularios/data-form/data-form.component';
 //import { AlunosModule } from './rotas/alunos/alunos.module';
 //import { CoursesModule } from './rotas/courses/courses.module';
@@ -85,7 +85,6 @@ registerLocaleData(esEs)
     LoginComponent,
     HomeComponent,
     PageNotFoundComponent,
-    TemplateFormComponent,
     DataFormComponent,
     //CoursesComponent,
     //CourseDetailsComponent,
@@ -101,7 +100,8 @@ registerLocaleData(esEs)
     CursosModule,
     //CoursesModule,
     //AlunosModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TemplateFormModule
   ],
   providers: [
     AuthService,
