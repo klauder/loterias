@@ -60,7 +60,7 @@
         <input type="email" class="form-control" id="email2" 
             placeholder="nome@email.com" name="email2"  [ngModel]="usuario.email2">
     </div>
-    
-    
-    <button type="submit" class="btn btn-primary btn-rounded">Submit</button>
+        
+    <button type="submit" class="btn btn-primary btn-rounded"
+        [disabled]="!f.valid">Submit</button>
 </form>
