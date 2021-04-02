@@ -22,7 +22,7 @@ export class TemplateFormComponent implements OnInit {
   // [(ngModel)] TWO-WAY-DATABIND É para quando necessito atualizar o valor
   // [ngModel] Property Binding é para quando necessito SOMENTE INICIALIZAR o campo com um valor que NÃO SERÁ ATUALIZADO
   onSubmit(form){
-    console.log(form);
-    console.log(this.usuario);     
+    //console.log(form);
+    //console.log(this.usuario);     
   }
 }
