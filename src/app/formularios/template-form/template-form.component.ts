@@ -10,6 +10,13 @@ export class TemplateFormComponent implements OnInit {
   usuario: any = {
     nome: null,
     email: null,
+    cep: null,
+    rua: null,
+    numero: null,
+    complento: null,
+    bairro: null,
+    cidade: null,
+    estado: null,
     nome2: 'Não muda valores',
     email2: 'teste@gmail.com'
   }
