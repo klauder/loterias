@@ -47,7 +47,6 @@ import { LoginComponent } from './rotas/login/login.component';
 import { HomeComponent } from './rotas/home/home.component';
 import { PageNotFoundComponent } from './rotas/page-not-found/page-not-found.component';
 import { DataFormComponent } from './formularios/data-form/data-form.component';
-import { FormDebugComponent } from './formularios/form-debug/form-debug.component';
 //import { AlunosModule } from './rotas/alunos/alunos.module';
 //import { CoursesModule } from './rotas/courses/courses.module';
 //import { CoursesComponent } from './rotas/courses/courses.component';
