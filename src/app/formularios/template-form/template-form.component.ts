@@ -15,7 +15,7 @@ export class TemplateFormComponent implements OnInit {
     cep: null,
     rua: null,
     numero: null,
-    complento: null,
+    complemento: null,
     bairro: null,
     cidade: null,
     estado: null,
@@ -51,7 +51,7 @@ export class TemplateFormComponent implements OnInit {
     }
   }
 
-  consultaCEP(cep){
+  consultaCEP(cep,form){
     //console.log(cep);
 
        //Nova variável "cep" somente com dígitos.
@@ -64,12 +64,60 @@ export class TemplateFormComponent implements OnInit {
            var validacep = /^[0-9]{8}$/;
 
            //Valida o formato do CEP.
-           if(validacep.test(cep)) {               
-              this.http.get(`//viacep.com.br/ws/${cep}/json`)
-              .subscribe(data => { console.log(data); });
+           if(validacep.test(cep)) {    
+             
+            this.resetaDadosForm(form);
+
+            this.http.get(`//viacep.com.br/ws/${cep}/json`)
+              .subscribe(data => { this.populaDadosForm(data,form) });
            }
 
         }
+  }
+
+  populaDadosForm(data,formulario){
+    /*
+    formulario.setValue({
+      nome: formulario.value.nome,
+      email: formulario.value.email,
+      endereco: {
+        cep: data.cep,
+        rua: data.logradouro,
+        complemento: data.complemento,
+        bairro: data.bairro,
+        numero: '',
+        cidade: data.localidade,
+        estado: data.uf
+      }
+    });
+*/
+
+    // Modifica somente os campos que desejamos
+    formulario.form.patchValue({
+      endereco: {
+        cep: data.cep,
+        rua: data.logradouro,
+        complemento: data.complemento,
+        bairro: data.bairro,
+        cidade: data.localidade,
+        estado: data.uf
+      }
+    });
+    //console.log(formulario);    
+  }
+
+  resetaDadosForm(formulario){
+    formulario.form.patchValue({
+      endereco: {
+        cep: null,
+        rua: null,
+        numero: null,
+        complemento: null,
+        bairro: null,
+        cidade: null,
+        estado: null,
+      }
+    });
   }
 
 
