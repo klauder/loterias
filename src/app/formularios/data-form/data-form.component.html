@@ -2,7 +2,9 @@
 <br/>
 <hr/>
 
-<form class="form-horizontal" [formGroup]="formulario">
+<form class="form-horizontal" 
+    [formGroup]="formulario"
+    (ngSubmit)="onSubmit()">
     
     <div class="form-group">
         <div class="col-md-12">
@@ -27,8 +29,6 @@
     </div>    
 
     <button type="submit" class="btn btn-primary btn-rounded">Submit</button>
-
-    <br/>
 
     <app-form-debug [form]="formulario"></app-form-debug>
 

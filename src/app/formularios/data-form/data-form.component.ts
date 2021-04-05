@@ -1,6 +1,6 @@
-import { stringify } from '@angular/compiler/src/util';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -11,21 +11,30 @@ export class DataFormComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient
+    ) { }
 
   ngOnInit(): void {
-    /*
-    this.formulario = new FormGroup({
-      nome: new FormControl(null),
-      email: new FormControl(null)
-    });*/
-
-    //Segunda forma de escreve o código acima
+    
     this.formulario = this.formBuilder.group({
       nome: [null],
       email: [null]
     });
     
+  }
+
+  onSubmit(){
+    //console.log(this.formulario);
+
+    let url: string = 'enderecoServer/formUsuario';
+
+    url = 'https://httpbin.org/post';
+    
+    let jsonData = JSON.stringify(this.formulario.value);
+    this.http.post(url, jsonData)
+      .subscribe(res => console.log(res));
   }
 
 }
