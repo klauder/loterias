@@ -34,7 +34,14 @@ export class TemplateFormComponent implements OnInit {
   // [ngModel] Property Binding é para quando necessito SOMENTE INICIALIZAR o campo com um valor que NÃO SERÁ ATUALIZADO
   onSubmit(form){
     //console.log(form);
-    //console.log(this.usuario);     
+    //console.log(this.usuario);  
+    let url: string = 'enderecoServer/formUsuario';
+
+    url = 'https://httpbin.org/post';
+    
+    let jsonData = JSON.stringify(form.value);
+    this.http.post(url, jsonData)
+      .subscribe(res => console.log(res));
   }
 
   verificaValidAndTouchedOrDirty(campo){
