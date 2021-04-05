@@ -1,3 +1,4 @@
+import { DataFormModule } from './formularios/data-form/data-form.module';
 import { TemplateFormModule } from './formularios/template-form/template-form.module';
 import { AlunosGuard } from './rotas/guards/alunos.guard';
 import { CoursesGuard } from './rotas/guards/courses.guard';
@@ -6,7 +7,7 @@ import { AuthService } from './rotas/login/auth.service';
 import { LogService } from './shared/log.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,7 +47,7 @@ import { RotasComponent } from './rotas/rotas.component';
 import { LoginComponent } from './rotas/login/login.component';
 import { HomeComponent } from './rotas/home/home.component';
 import { PageNotFoundComponent } from './rotas/page-not-found/page-not-found.component';
-import { DataFormComponent } from './formularios/data-form/data-form.component';
+//import { DataFormComponent } from './formularios/data-form/data-form.component';
 //import { AlunosModule } from './rotas/alunos/alunos.module';
 //import { CoursesModule } from './rotas/courses/courses.module';
 //import { CoursesComponent } from './rotas/courses/courses.component';
@@ -85,7 +86,7 @@ registerLocaleData(esEs)
     LoginComponent,
     HomeComponent,
     PageNotFoundComponent,
-    DataFormComponent,
+    //DataFormComponent,
     //CoursesComponent,
     //CourseDetailsComponent,
     //CourseNotFoundComponent,
@@ -101,7 +102,9 @@ registerLocaleData(esEs)
     //CoursesModule,
     //AlunosModule,
     AppRoutingModule,
-    TemplateFormModule
+    TemplateFormModule,
+    DataFormModule,
+    ReactiveFormsModule, //Isso é para trabalhar com formulário reativos (data-driven)
   ],
   providers: [
     AuthService,

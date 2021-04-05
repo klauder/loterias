@@ -16,7 +16,7 @@ import { AuthGuard } from './rotas/guards/auth.guard';
 const appRoutes: Routes = [
   { path: 'templateForm', component: TemplateFormComponent },
   { path: 'dataForm', component: DataFormComponent },
-  {path: '', redirectTo:'/', pathMatch:'full'}
+  { path: '', redirectTo:'dataForm', pathMatch:'full'}
   /*
   { 
     path: 'courses', 
