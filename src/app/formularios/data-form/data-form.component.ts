@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -19,14 +19,14 @@ export class DataFormComponent implements OnInit {
   ngOnInit(): void {
     
     this.formulario = this.formBuilder.group({
-      nome: [null],
-      email: [null]
+      nome: [null, Validators.required],
+      email: [null, [Validators.required,Validators.email]]
     });
     
   }
 
   onSubmit(){
-    //console.log(this.formulario);
+    console.log(this.formulario);
 
     let url: string = 'enderecoServer/formUsuario';
 
@@ -38,7 +38,7 @@ export class DataFormComponent implements OnInit {
         console.log(res);
 
         //reseta o form        
-        this.resetar();
+        //this.resetar();
       },
       (error: any) => alert('error')
       );
