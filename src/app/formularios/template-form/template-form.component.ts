@@ -32,16 +32,21 @@ export class TemplateFormComponent implements OnInit {
 
   // [(ngModel)] TWO-WAY-DATABIND É para quando necessito atualizar o valor
   // [ngModel] Property Binding é para quando necessito SOMENTE INICIALIZAR o campo com um valor que NÃO SERÁ ATUALIZADO
-  onSubmit(form){
-    //console.log(form);
+  onSubmit(formulario){
+    //console.log(formulario);
     //console.log(this.usuario);  
-    let url: string = 'enderecoServer/formUsuario';
-
-    url = 'https://httpbin.org/post';
+    let url: string = 'https://httpbin.org/post';
     
-    let jsonData = JSON.stringify(form.value);
+    let jsonData = JSON.stringify(formulario.value);
     this.http.post(url, jsonData)
-      .subscribe(res => console.log(res));
+      .subscribe(res => {
+        console.log(res)
+
+        //reseta o formulario
+        formulario.form.reset();
+      },
+        (error: any) => alert('error')
+      );
   }
 
   verificaValidAndTouchedOrDirty(campo){
@@ -73,7 +78,7 @@ export class TemplateFormComponent implements OnInit {
            //Valida o formato do CEP.
            if(validacep.test(cep)) {    
              
-            this.resetaDadosForm(form);
+            this.resetaDadosCepForm(form);
 
             this.http.get(`//viacep.com.br/ws/${cep}/json`)
               .subscribe(data => { this.populaDadosForm(data,form) });
@@ -113,7 +118,7 @@ export class TemplateFormComponent implements OnInit {
     //console.log(formulario);    
   }
 
-  resetaDadosForm(formulario){
+  resetaDadosCepForm(formulario){
     formulario.form.patchValue({
       endereco: {
         cep: null,

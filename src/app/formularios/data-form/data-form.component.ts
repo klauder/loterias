@@ -34,7 +34,18 @@ export class DataFormComponent implements OnInit {
     
     let jsonData = JSON.stringify(this.formulario.value);
     this.http.post(url, jsonData)
-      .subscribe(res => console.log(res));
+      .subscribe(res =>{
+        console.log(res);
+
+        //reseta o form        
+        this.resetar();
+      },
+      (error: any) => alert('error')
+      );
+  }
+
+  resetar(){
+    this.formulario.reset();
   }
 
 }
