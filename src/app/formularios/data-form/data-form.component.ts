@@ -1,6 +1,7 @@
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -19,7 +20,7 @@ export class DataFormComponent implements OnInit {
   ngOnInit(): void {
     
     this.formulario = this.formBuilder.group({
-      nome: [null, Validators.required],
+      nome: [null, [Validators.required,Validators.minLength(3)]],
       email: [null, [Validators.required,Validators.email]]
     });
     
@@ -28,9 +29,7 @@ export class DataFormComponent implements OnInit {
   onSubmit(){
     console.log(this.formulario);
 
-    let url: string = 'enderecoServer/formUsuario';
-
-    url = 'https://httpbin.org/post';
+    let url: string = 'https://httpbin.org/post';
     
     let jsonData = JSON.stringify(this.formulario.value);
     this.http.post(url, jsonData)
@@ -46,6 +45,28 @@ export class DataFormComponent implements OnInit {
 
   resetar(){
     this.formulario.reset();
+  }
+
+  verificaValidAndTouchedOrDirty(campo){
+    return this.formulario.get(campo).invalid && (this.formulario.get(campo).dirty || this.formulario.get(campo).touched);
+  }
+
+  verificaRequired(campo){    
+    return this.verificaValidAndTouchedOrDirty(campo) && this.formulario.get(campo).errors.required;
+  }
+  
+  verificaEmail(campo){    
+    return this.verificaValidAndTouchedOrDirty(campo) && this.formulario.get(campo).errors.email;
+  }
+
+  verificaMinlength(campo){    
+    return this.verificaValidAndTouchedOrDirty(campo) && this.formulario.get(campo).errors.minlength;
+  }
+
+  aplicaCssErro(campo){
+    return{
+      'has-error': this.verificaValidAndTouchedOrDirty(campo)
+    }
   }
 
 }
