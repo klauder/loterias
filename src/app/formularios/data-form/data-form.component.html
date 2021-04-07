@@ -117,8 +117,13 @@
                
             <div class="form-group col-md-4" [ngClass]="aplicaCssErro('endereco.estado')">     
                 <label for="estado" class="control-label">Estado</label>
-                <input type="text" class="form-control" id="estado" 
-                        placeholder="Estado" formControlName="estado" >
+                <select type="text" class="form-control" id="estado" 
+                    placeholder="Estado" formControlName="estado" >
+                    <option *ngFor="let estado of estados | async"
+                        [value]="estado.sigla">
+                        {{ estado.sigla }}
+                    </option>
+                </select>
             
                     <app-campo-control-erro
                         [mostrarErro]="verificaRequired('endereco.estado')"

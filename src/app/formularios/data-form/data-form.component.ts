@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-data-form',
@@ -14,7 +15,9 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 export class DataFormComponent implements OnInit {
 
   formulario: FormGroup;
-  estados: EstadoBr[];
+  //estados: EstadoBr[];
+
+  estados: Observable<EstadoBr[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,13 +27,14 @@ export class DataFormComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.dropdownService.getEstadosBr()
-      .subscribe(dados => {this.estados = dados;console.log(dados);});
-    
-      /*
-    this.dropdownService.getEstadosBr()
-      .subscribe(dados => this.estados = dados);
+
+    /*
+      this.dropdownService.getEstadosBr()
+        .subscribe(dados => {this.estados = dados;console.log(dados);});
     */
+    
+    this.estados = this.dropdownService.getEstadosBr();
+    
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required,Validators.minLength(3)]],
       email: [null, [Validators.required,Validators.email]],
@@ -46,7 +50,7 @@ export class DataFormComponent implements OnInit {
       }) 
            
     });
-    
+     
   }
 
   onSubmit(){
@@ -124,7 +128,7 @@ export class DataFormComponent implements OnInit {
       this.cepService.consultaCEP(cep)
         .subscribe(data => { this.populaDadosForm(data) });
     }
-           
+
   }
 
   populaDadosForm(data){
