@@ -38,20 +38,40 @@ export class DataFormComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.formulario);
+    //console.log(this.formulario);
 
-    let url: string = 'https://httpbin.org/post';
+    if (this.formulario.valid){
+      let url: string = 'https://httpbin.org/post';
     
-    let jsonData = JSON.stringify(this.formulario.value);
-    this.http.post(url, jsonData)
-      .subscribe(res =>{
-        console.log(res);
+      let jsonData = JSON.stringify(this.formulario.value);
+      this.http.post(url, jsonData)
+        .subscribe(res =>{
+          console.log(res);
+  
+          //reseta o form        
+          //this.resetar();
+        },
+        (error: any) => alert('error')
+        );
+    }else{
+      //console.log('Formulário Inválido');
+      this.verificaValidacoesForm(this.formulario);  
+    }
+    
+  }
 
-        //reseta o form        
-        //this.resetar();
-      },
-      (error: any) => alert('error')
-      );
+  verificaValidacoesForm(formGroup: FormGroup){
+    
+    Object.keys(formGroup.controls).forEach(
+      campo => {
+        const controle = formGroup.get(campo);
+        controle.markAsDirty();
+        controle.markAsTouched();
+
+        if (controle instanceof FormGroup){
+          this.verificaValidacoesForm(controle);
+        }
+      });
   }
 
   resetar(){
