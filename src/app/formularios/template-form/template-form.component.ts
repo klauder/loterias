@@ -1,3 +1,4 @@
+import { ConsultaCepService } from './../shared/services/consulta-cep.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { map } from 'rxjs/operators'
@@ -23,7 +24,10 @@ export class TemplateFormComponent implements OnInit {
     email2: 'teste@gmail.com'
   }
   
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private cepService: ConsultaCepService
+    ) {
   }
 
   ngOnInit(): void {
@@ -66,25 +70,11 @@ export class TemplateFormComponent implements OnInit {
   consultaCEP(cep,form){
     //console.log(cep);
 
-       //Nova variável "cep" somente com dígitos.
-      cep = cep.replace(/\D/g, '');
-
-       //Verifica se campo cep possui valor informado.
-       if (cep != "") {
-
-           //Expressão regular para validar o CEP.
-           var validacep = /^[0-9]{8}$/;
-
-           //Valida o formato do CEP.
-           if(validacep.test(cep)) {    
-             
-            this.resetaDadosCepForm(form);
-
-            this.http.get(`//viacep.com.br/ws/${cep}/json`)
-              .subscribe(data => { this.populaDadosForm(data,form) });
-           }
-
-        }
+    if (cep != null && cep !== ''){
+      this.cepService.consultaCEP(cep)
+        .subscribe(data => { this.populaDadosForm(data,form) });
+    }
+    
   }
 
   populaDadosForm(data,formulario){
