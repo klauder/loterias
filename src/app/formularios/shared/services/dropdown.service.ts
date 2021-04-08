@@ -21,4 +21,14 @@ export class DropdownService {
       {nome: 'Dev', nivel: 'Sênior', desc: 'Dev Sr'}
     ];
   }
+
+  getTencologias(){
+    return [
+      {nome: 'java', desc: 'Java'},
+      {nome: 'javascript', desc: 'JavaScript'},
+      {nome: 'php', desc: 'Php'},
+      {nome: 'ruby', desc: 'Ruby'}
+    ];
+  }
+
 }

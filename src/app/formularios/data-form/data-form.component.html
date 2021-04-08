@@ -133,19 +133,33 @@
         </div>       
     </div>
 
-    <div class="form-group col-md-8" [ngClass]="aplicaCssErro('cargo')">     
-        <label for="cargo" class="control-label">Cargo</label>
-        <select class="form-control" id="cargo" 
-            formControlName="cargo" [compareWith]="compararCargos" >
-            <option *ngFor="let cargo of cargos" [ngValue]="cargo">
-                {{ cargo.desc }}
-            </option>
-        </select>
-    </div>  
-    
+    <div class="form-row">
+        <div class="form-group col-md-6">     
+            <label for="cargo" class="control-label">Cargo</label>
+            <select class="form-control" id="cargo" 
+                formControlName="cargo" [compareWith]="compararCargos" >
+                <option *ngFor="let cargo of cargos" [ngValue]="cargo">
+                    {{ cargo.desc }}
+                </option>
+            </select>
+        </div>  
+
+        <div class="form-group col-md-6">     
+            <label for="tecnologias" class="control-label">Tecnologias</label>
+            <select multiple class="form-control" id="tecnologias" 
+                formControlName="tecnologias" >
+                <option *ngFor="let tech of techs" [value]="tech.nome">
+                    {{ tech.desc }}
+                </option>
+            </select>
+        </div>  
+    </div>
+   
+
     <button type="submit" class="btn btn-primary btn-rounded">Submit</button>
     <button class="btn btn-danger btn-rounded" (click)="resetar()">Cancelar</button>
-    <button class="btn btn-success btn-rounded" (click)="setarCargo()">Definir Cargo</button>
+    <button class="btn btn-success btn-rounded" (click)="setarCargo()">Cargo</button>
+    <button class="btn btn-info btn-rounded" (click)="setarTecnologias()">Tecnologias</button>
 
     <app-form-debug [form]="formulario"></app-form-debug>
 
