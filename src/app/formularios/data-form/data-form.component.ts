@@ -21,6 +21,8 @@ export class DataFormComponent implements OnInit {
   techs: any[];
   newsletterOp: any[];
 
+  frameworks = ['Angular','React', 'Vue', 'Sencha'];
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -55,21 +57,38 @@ export class DataFormComponent implements OnInit {
       }),
       cargo: [null],
       tecnologias: [null],
-      newsletter: [null]      
+      newsletter: [null],
+      termos: [null, Validators.pattern('true')], //validar checkbox    
+      frameworks: this.buildFrameworks()
     });
      
   }
 
+  buildFrameworks(){
+    const values = this.frameworks.map(v => new FormControl(false));
+    return this.formBuilder.array(values);
+  }
+
   onSubmit(){
-    //console.log(this.formulario);
+    console.log(this.formulario);
+
+    let valueSubmit = Object.assign({},this.formulario.value);
+
+    valueSubmit = Object.assign(valueSubmit, {
+      frameworks: valueSubmit.frameworks
+        .map((v, i) => v ? this.frameworks[i] : null)
+        .filter(v => v !== null)
+    });
+
+    console.log(valueSubmit);
 
     if (this.formulario.valid){
       let url: string = 'https://httpbin.org/post';
-    
-      let jsonData = JSON.stringify(this.formulario.value);
-      this.http.post(url, jsonData)
+
+      this.http.post(url, JSON.stringify(valueSubmit))
         .subscribe(res =>{
-          console.log(res);
+          
+          //console.log(res);
   
           //reseta o form        
           //this.resetar();
@@ -119,6 +138,10 @@ export class DataFormComponent implements OnInit {
   
   verificaMaxlength(campo){    
     return this.verificaValidAndTouchedOrDirty(campo) && this.formulario.get(campo).errors.maxlength;
+  }
+  
+  verificaCheckbox(campo){    
+    return this.formulario.get(campo).invalid && this.formulario.get(campo).errors.pattern;
   }
 
   aplicaCssErro(campo: string){

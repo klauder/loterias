@@ -156,16 +156,50 @@
 
         <!-- Bool Switch-->
         <div class="form-group col-md-2">
-            <label class="control-label">Newsletter</label>
+            <label class="control-label">Newsletter</label> <br/>
             <div class="custom-control custom-radio custom-control-inline"
             *ngFor="let item of newsletterOp">
-                <input type="radio" id={{item.id}} formControlName="newsletter"
+                <input type="radio" id={{item.valor}} formControlName="newsletter"
                     class="custom-control-input" [value]="item.valor" />
-                <label class="custom-control-label" for="{{item.id}}"> {{ item.desc}} </label>
+                <label class="custom-control-label" for="{{item.valor}}"> {{ item.desc}} </label>
             </div>
         </div>     
     </div>
    
+    <div class="form-row">
+        <div class="form-group custom-control custom-checkbox" [ngClass]="aplicaCssErro('termos')">
+            <input type="checkbox" class="custom-control-input" id="termos" formControlName="termos">
+            <label class="custom-control-label" for="termos"> Aceito os termos</label>
+
+            <app-campo-control-erro
+                [mostrarErro]="verificaCheckbox('termos')"
+                msgErro="Favor aceitar os termos." >
+            </app-campo-control-erro>
+        </div>  
+    </div>
+<!--
+    <div class="form-row">
+        <div class="form-group mt-4">
+            <div class="custom-control custom-checkbox custom-control-inline" 
+              formArrayName="frameworks"
+                *ngFor="let item of frameworks;let i=index;" >
+                <input type="checkbox" formControlName="{{i}}" class="custom-control-input" id="{{ i }}">
+                <label class="custom-control-label" for="{{ i }}">{{ item }}</label>
+            </div>
+        </div>
+    </div>
+-->
+
+<div class="form-row">
+    <div class="form-group mt-4">
+        <div class="custom-control custom-checkbox custom-control-inline" 
+          formArrayName="frameworks"
+            *ngFor="let item of frameworks;let i=index;" >
+            <input type="checkbox" formControlName="{{i}}" class="custom-control-input" id="{{ i }}">
+            <label class="custom-control-label" for="{{ i }}">{{ frameworks[i] }}</label>
+        </div>
+    </div>
+</div>
 
     <button type="submit" class="btn btn-primary btn-rounded">Submit</button>
     <button class="btn btn-danger btn-rounded" (click)="resetar()">Cancelar</button>

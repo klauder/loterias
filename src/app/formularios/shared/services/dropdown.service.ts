@@ -33,8 +33,8 @@ export class DropdownService {
 
   getNewslleter() {
     return [
-      { id:1, valor:'S', desc: 'Sim' },
-      { id:0, valor:'N', desc: 'Não' },
+      { valor:'S', desc: 'Sim' },
+      { valor:'N', desc: 'Não' },
     ];
   }
 
