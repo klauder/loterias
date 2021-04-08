@@ -134,7 +134,7 @@
     </div>
 
     <div class="form-row">
-        <div class="form-group col-md-6">     
+        <div class="form-group col-md-5">     
             <label for="cargo" class="control-label">Cargo</label>
             <select class="form-control" id="cargo" 
                 formControlName="cargo" [compareWith]="compararCargos" >
@@ -144,7 +144,7 @@
             </select>
         </div>  
 
-        <div class="form-group col-md-6">     
+        <div class="form-group col-md-5">     
             <label for="tecnologias" class="control-label">Tecnologias</label>
             <select multiple class="form-control" id="tecnologias" 
                 formControlName="tecnologias" >
@@ -152,7 +152,18 @@
                     {{ tech.desc }}
                 </option>
             </select>
-        </div>  
+        </div> 
+
+        <!-- Bool Switch-->
+        <div class="form-group col-md-2">
+            <label class="control-label">Newsletter</label>
+            <div class="custom-control custom-radio custom-control-inline"
+            *ngFor="let item of newsletterOp">
+                <input type="radio" id={{item.id}} formControlName="newsletter"
+                    class="custom-control-input" [value]="item.valor" />
+                <label class="custom-control-label" for="{{item.id}}"> {{ item.desc}} </label>
+            </div>
+        </div>     
     </div>
    
 
