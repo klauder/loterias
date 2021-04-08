@@ -16,8 +16,8 @@ export class DataFormComponent implements OnInit {
 
   formulario: FormGroup;
   //estados: EstadoBr[];
-
   estados: Observable<EstadoBr[]>;
+  cargos: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,11 +34,12 @@ export class DataFormComponent implements OnInit {
     */
     
     this.estados = this.dropdownService.getEstadosBr();
-    
+    this.cargos = this.dropdownService.getCargos();
+
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required,Validators.minLength(3)]],
       email: [null, [Validators.required,Validators.email]],
-
+      
       endereco: this.formBuilder.group({
         cep: [null, [Validators.required]],
         numero: [null, [Validators.required]],
@@ -47,8 +48,8 @@ export class DataFormComponent implements OnInit {
         bairro: [null, [Validators.required]],
         cidade: [null, [Validators.required]],
         estado: [null, [Validators.required]]
-      }) 
-           
+      }),
+      cargo: [null]           
     });
      
   }
@@ -164,5 +165,15 @@ export class DataFormComponent implements OnInit {
     });
   }
 
+  setarCargo(){
+    const cargo = {nome: 'Dev', nivel: 'Pleno', desc: 'Dev Pl'};
 
+    this.formulario.get('cargo').setValue(cargo);
+  }
+
+  compararCargos(obj1, obj2){
+
+    return obj1 && obj2 ? (obj1.nivel === obj2.nivel && obj1.desc === obj2.desc) : obj1 === obj2;
+
+  }
 }
