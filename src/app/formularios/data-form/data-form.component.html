@@ -9,12 +9,12 @@
             placeholder="Nome" formControlName="nome">
         
         <app-campo-control-erro
-            [mostrarErro]="verificaRequired('nome')"
+            [mostrarErro]="validaCampo('nome','required')"
             msgErro="O campo Nome é obrigatório." >
         </app-campo-control-erro>
 
         <app-campo-control-erro
-            [mostrarErro]="verificaMinlength('nome')"
+            [mostrarErro]="validaCampo('nome','minlenght')"
             msgErro="O campo deve ter no mínimo 3 caracteres." >
         </app-campo-control-erro>
 
@@ -26,12 +26,12 @@
         placeholder="Email" formControlName="email">
         
         <app-campo-control-erro
-            [mostrarErro]="verificaRequired('email')"
+            [mostrarErro]="validaCampo('email','required')"
             msgErro="O campo Email é obrigatório." >
         </app-campo-control-erro>
         
         <app-campo-control-erro
-            [mostrarErro]="verificaEmail('email')"
+            [mostrarErro]="validaCampo('email','email')"
             msgErro="Email inválido." >
         </app-campo-control-erro>
 
@@ -47,9 +47,15 @@
                     (blur)="consultaCEP()">
                 
                 <app-campo-control-erro
-                    [mostrarErro]="verificaRequired('endereco.cep')"
-                    msgErro="O campo CEP é obrigatório." >
+                    [mostrarErro]="validaCampo('endereco.cep','required')"
+                    msgErro="O campo CEP é obrigatório" >
                 </app-campo-control-erro>
+
+                <app-campo-control-erro
+                    [mostrarErro]="validaCampo('endereco.cep','cepInvalido')"
+                    msgErro="CEP inválido" >
+                </app-campo-control-erro>
+                
             </div>
         </div>
         
@@ -61,7 +67,7 @@
                     placeholder="Rua" formControlName="rua">
                             
                 <app-campo-control-erro
-                    [mostrarErro]="verificaRequired('endereco.rua')"
+                    [mostrarErro]="validaCampo('endereco.rua','required')"
                     msgErro="O campo Rua é obrigatório." >
                 </app-campo-control-erro>
             </div>   
@@ -72,7 +78,7 @@
                     placeholder="N°" formControlName="numero" >                    
                     
                 <app-campo-control-erro
-                    [mostrarErro]="verificaRequired('endereco.numero')"
+                    [mostrarErro]="validaCampo('endereco.numero','required')"
                     msgErro="O campo Número é obrigatório." >
                 </app-campo-control-erro>
             </div>  
@@ -85,7 +91,7 @@
                     placeholder="Bairro" formControlName="bairro">
                     
                 <app-campo-control-erro
-                    [mostrarErro]="verificaRequired('endereco.bairro')"
+                    [mostrarErro]="validaCampo('endereco.bairro','required')"
                     msgErro="O campo Bairro é obrigatório." >
                 </app-campo-control-erro>
             </div>
@@ -96,7 +102,7 @@
                     placeholder="Complemento" formControlName="complemento" >
                     
                 <app-campo-control-erro
-                    [mostrarErro]="verificaMaxlength('endereco.complemento')"
+                    [mostrarErro]="validaCampo('endereco.complemento','maxlength')"
                     msgErro="O campo complemento deve ter no máximo 10 caracteres." >
                 </app-campo-control-erro>
 
@@ -110,7 +116,7 @@
                     placeholder="Cidade" formControlName="cidade" >
         
                 <app-campo-control-erro
-                    [mostrarErro]="verificaRequired('endereco.cidade')"
+                    [mostrarErro]="validaCampo('endereco.cidade','required')"
                     msgErro="O campo Cidade é obrigatório." >
                 </app-campo-control-erro>
             </div>
@@ -126,7 +132,7 @@
                 </select>
             
                 <app-campo-control-erro
-                    [mostrarErro]="verificaRequired('endereco.estado')"
+                    [mostrarErro]="validaCampo('endereco.estado','required')"
                     msgErro="O campo Estado é obrigatório." >
                 </app-campo-control-erro>
             </div>  
@@ -162,7 +168,7 @@
                 <input type="radio" id={{item.valor}} formControlName="newsletter"
                     class="custom-control-input" [value]="item.valor" />
                 <label class="custom-control-label" for="{{item.valor}}"> {{ item.desc}} </label>
-            </div>
+            </div>            
         </div>     
     </div>
    
@@ -172,8 +178,8 @@
             <label class="custom-control-label" for="termos"> Aceito os termos</label>
 
             <app-campo-control-erro
-                [mostrarErro]="verificaCheckbox('termos')"
-                msgErro="Favor aceitar os termos." >
+                [mostrarErro]="validaCampo('termos','checkRequired')"
+                msgErro="Favor aceitar os termos" >
             </app-campo-control-erro>
         </div>  
     </div>

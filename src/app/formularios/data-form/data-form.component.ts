@@ -2,7 +2,6 @@ import { FormValations } from './../shared/form-validations';
 import { ConsultaCepService } from './../shared/services/consulta-cep.service';
 import { EstadoBr } from './../shared/models/estado-br.model';
 import { DropdownService } from './../shared/services/dropdown.service';
-import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
@@ -48,7 +47,7 @@ export class DataFormComponent implements OnInit {
       email: [null, [Validators.required,Validators.email]],
       
       endereco: this.formBuilder.group({
-        cep: [null, [Validators.required]],
+        cep: [null, [Validators.required, FormValations.cepValidator]],
         numero: [null, [Validators.required]],
         complemento: [null, [Validators.maxLength(10)]],
         rua: [null, [Validators.required]],
@@ -58,8 +57,9 @@ export class DataFormComponent implements OnInit {
       }),
       cargo: [null],
       tecnologias: [null],
-      newsletter: [null],
-      termos: [null, Validators.pattern('true')], //validar checkbox    
+      newsletter: ['S'],
+      //termos: [null, Validators.pattern('true')], //validar checkbox    
+      termos: [false, FormValations.requiredCheckbox], //validar checkbox  
       frameworks: this.buildFrameworks()
     });
      
@@ -125,6 +125,12 @@ export class DataFormComponent implements OnInit {
     return this.formulario.get(campo).invalid && (this.formulario.get(campo).dirty || this.formulario.get(campo).touched);
   }
 
+  validaCampo(campo, validacao){
+    return (this.formulario.get(campo).invalid && this.formulario.get(campo).hasError(validacao) ) 
+      && (this.formulario.get(campo).dirty || this.formulario.get(campo).touched);
+  }
+  
+  /*
   verificaRequired(campo){    
     return this.verificaValidAndTouchedOrDirty(campo) && this.formulario.get(campo).errors.required;
   }
@@ -140,10 +146,11 @@ export class DataFormComponent implements OnInit {
   verificaMaxlength(campo){    
     return this.verificaValidAndTouchedOrDirty(campo) && this.formulario.get(campo).errors.maxlength;
   }
-  
+
   verificaCheckbox(campo){    
     return this.formulario.get(campo).invalid && this.formulario.get(campo).errors.pattern;
   }
+  */
 
   aplicaCssErro(campo: string){
     return{
