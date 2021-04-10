@@ -1,4 +1,4 @@
-import { FormArray, FormControl } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 export class FormValations {
  
@@ -50,6 +50,37 @@ export class FormValations {
         }
 
         return null;
+    }
+
+    static equaltsTo(otherField: string){
+        const validator = (formControl: FormControl) => {
+            const formGrop = (<FormGroup>formControl.root);
+
+            if(otherField == null) {
+                throw new Error('É necessário informar um campo');
+            }
+
+            //console.log(formGrop);
+
+            // Isso é para verificar se o campo e o formalário já estão prontos para serem validados
+            if (!formControl.root || !formGrop.controls){
+                return null;
+            }
+
+            const field = formGrop.get(otherField);
+ 
+            if(!field){
+                throw new Error('É necessário informar um campo válido')
+            }
+
+            if(field.value !== formControl.value){
+                return { equaltsTo: otherField };
+            }
+
+            return null; //caso os valores sejam iguais
+        };
+
+        return validator;
     }
 
 }
