@@ -50,9 +50,9 @@ export class DataFormComponent implements OnInit {
     //https://github.com/yuyang041060120/ng2-validation
 
     this.formulario = this.formBuilder.group({
-      nome: [null, [Validators.required,Validators.minLength(3)]],
+      nome: [null, [Validators.required,Validators.minLength(3),Validators.maxLength(10)]],
       email: [null, [Validators.required,Validators.email],[this.validarEmail.bind(this)]],
-      confirmarEmail: [null, FormValations.equaltsTo('email')],
+      confirmarEmail: [null, FormValations.equalsTo('email')],
 
       endereco: this.formBuilder.group({
         cep: [null, [Validators.required, FormValations.cepValidator]],
@@ -135,8 +135,15 @@ export class DataFormComponent implements OnInit {
   }
 
   validaCampo(campo, validacao){
+    //console.log(campo);
     return (this.formulario.get(campo).invalid && this.formulario.get(campo).hasError(validacao) ) 
       && (this.formulario.get(campo).dirty || this.formulario.get(campo).touched);
+  }
+
+  
+  verificaMinlength(campo){    
+    //console.log(campo);
+    return this.verificaValidAndTouchedOrDirty(campo) && this.formulario.get(campo).errors.minlength;
   }
   
   /*

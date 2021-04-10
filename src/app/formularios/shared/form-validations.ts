@@ -52,7 +52,7 @@ export class FormValations {
         return null;
     }
 
-    static equaltsTo(otherField: string){
+    static equalsTo(otherField: string){
         const validator = (formControl: FormControl) => {
             const formGrop = (<FormGroup>formControl.root);
 
@@ -74,7 +74,7 @@ export class FormValations {
             }
 
             if(field.value !== formControl.value){
-                return { equaltsTo: otherField };
+                return { equalsTo: otherField };
             }
 
             return null; //caso os valores sejam iguais
@@ -83,4 +83,15 @@ export class FormValations {
         return validator;
     }
 
+    static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any){
+        const config = {
+           'required':`O campo ${fieldName} é obrigatório.`,
+           'minlength':`O campo ${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres.`, 
+           'maxlength':`O campo ${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres.`,
+           'cepInvalido':`CEP inválido.`,
+           'equalsTo':`Os campos não são iguais.`
+        };
+        
+        return config[validatorName];
+    }
 }

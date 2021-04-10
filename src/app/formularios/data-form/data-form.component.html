@@ -8,15 +8,8 @@
         <input type="text" class="form-control" id="nome"
             placeholder="Nome" formControlName="nome">
         
-        <app-campo-control-erro
-            [mostrarErro]="validaCampo('nome','required')"
-            msgErro="O campo Nome é obrigatório." >
-        </app-campo-control-erro>
-
-        <app-campo-control-erro
-            [mostrarErro]="validaCampo('nome','minlenght')"
-            msgErro="O campo deve ter no mínimo 3 caracteres." >
-        </app-campo-control-erro>
+        <app-error-msg [control]="formulario.get('nome')" label="Nome">
+        </app-error-msg>
 
     </div>    
 
@@ -37,7 +30,7 @@
         
         <app-campo-control-erro
             [mostrarErro]="formulario.get('email').status ==='PENDING'"
-            msgErro="Validando disponibilidade ..."
+            msgErro="Validando disponibilidade... ."
             css="info" >
         </app-campo-control-erro>
 
