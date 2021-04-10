@@ -34,7 +34,22 @@
             [mostrarErro]="validaCampo('email','email')"
             msgErro="Email inválido." >
         </app-campo-control-erro>
+        
+        <app-campo-control-erro
+            [mostrarErro]="formulario.get('email').status ==='PENDING'"
+            msgErro="Validando disponibilidade ..."
+            css="info" >
+        </app-campo-control-erro>
 
+        <app-campo-control-erro
+            [mostrarErro]="formulario.get('email').status ==='VALID'"
+            msgErro="Email válido!" css="success"  >
+        </app-campo-control-erro>
+        
+        <app-campo-control-erro
+            [mostrarErro]="validaCampo('email','emailInvalido')"
+            msgErro="Email já cadastrado." >
+        </app-campo-control-erro>
     </div>   
     
     <div class="form-group" [ngClass]="aplicaCssErro('confirmarEmail')">
@@ -46,7 +61,7 @@
             [mostrarErro]="validaCampo('confirmarEmail','equaltsTo')"
             msgErro="Os emails digitados não são iguais." >
         </app-campo-control-erro>
-
+        
     </div>    
     
 

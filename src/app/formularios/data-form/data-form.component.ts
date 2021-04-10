@@ -1,3 +1,4 @@
+import { VerificaEmailService } from './services/verifica-email.service';
 import { FormValations } from './../shared/form-validations';
 import { ConsultaCepService } from './../shared/services/consulta-cep.service';
 import { EstadoBr } from './../shared/models/estado-br.model';
@@ -6,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-form',
@@ -27,7 +29,8 @@ export class DataFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private dropdownService: DropdownService,
-    private cepService: ConsultaCepService
+    private cepService: ConsultaCepService,
+    private verificaEmailService: VerificaEmailService
     ) { }
 
   ngOnInit(): void {
@@ -37,16 +40,20 @@ export class DataFormComponent implements OnInit {
         .subscribe(dados => {this.estados = dados;console.log(dados);});
     */
     
+    //this.verificaEmailService.verificarEmail('email@email.com').subscribe();
     this.estados = this.dropdownService.getEstadosBr();
     this.cargos = this.dropdownService.getCargos();
     this.techs = this.dropdownService.getTencologias();
     this.newsletterOp = this.dropdownService.getNewslleter();
 
+    //Validation Forms
+    //https://github.com/yuyang041060120/ng2-validation
+
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required,Validators.minLength(3)]],
-      email: [null, [Validators.required,Validators.email]],
+      email: [null, [Validators.required,Validators.email],[this.validarEmail.bind(this)]],
       confirmarEmail: [null, FormValations.equaltsTo('email')],
-      
+
       endereco: this.formBuilder.group({
         cep: [null, [Validators.required, FormValations.cepValidator]],
         numero: [null, [Validators.required]],
@@ -56,6 +63,7 @@ export class DataFormComponent implements OnInit {
         cidade: [null, [Validators.required]],
         estado: [null, [Validators.required]]
       }),
+
       cargo: [null],
       tecnologias: [null],
       newsletter: ['S'],
@@ -215,5 +223,12 @@ export class DataFormComponent implements OnInit {
   compararCargos(obj1, obj2){
     return obj1 && obj2 ? (obj1.nivel === obj2.nivel && obj1.desc === obj2.desc) : obj1 === obj2;
   }
-  
+
+  validarEmail(formControl: FormControl){
+    return this.verificaEmailService.verificarEmail(formControl.value)
+      .pipe(
+        map(emailExiste => emailExiste ? { emailInvalido: true } : null)
+      );
+  }
+   
 }

@@ -9,7 +9,7 @@ export class CampoControlErroComponent implements OnInit {
 
   @Input() mostrarErro: boolean;
   @Input() msgErro: string;
-  
+  @Input() css: string = 'danger';
 
   constructor() { }
 
