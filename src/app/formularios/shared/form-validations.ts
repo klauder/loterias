@@ -44,7 +44,7 @@ export class FormValations {
         const cep = control.value;
         
         if (cep && cep !==''){
-            const validacep = /^[0-9]{5}-[0-9]{3}$/;
+            const validacep = /^[0-9]{2}[.]?[0-9]{3}[-]?[0-9]{3}$/; // Aceita cep: 00.000-000, 00000-000,00000000
 
             return validacep.test(cep) ? null : { cepInvalido: true };
         }

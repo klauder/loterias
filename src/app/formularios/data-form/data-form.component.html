@@ -51,8 +51,7 @@
             <div class="form-group col-md-4" [ngClass]="aplicaCssErro('endereco.cep')">
                 <label for="cep" class="control-label">CEP</label>
                 <input type="text" class="form-control" id="cep"
-                    placeholder="CEP" formControlName="cep" 
-                    (blur)="consultaCEP()">
+                    placeholder="CEP" formControlName="cep">
                                     
                 <app-error-msg [control]="formulario.get('endereco.cep')" label="CEP">
                 </app-error-msg>

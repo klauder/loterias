@@ -6,8 +6,8 @@ import { DropdownService } from './../shared/services/dropdown.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { EMPTY, Observable, empty } from 'rxjs';
+import { distinct, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-form',
@@ -71,7 +71,19 @@ export class DataFormComponent implements OnInit {
       termos: [false, FormValations.requiredCheckbox], //validar checkbox  
       frameworks: this.buildFrameworks()
     });
-     
+ 
+    // Escutar eventos depois que o formulario foi criado
+    this.formulario.get('endereco.cep').statusChanges
+      .pipe(
+        distinctUntilChanged(),
+        tap(value => console.log('statusChanges CEP: ', value)),
+          switchMap(status => status === 'VALID' ? 
+            this.cepService.consultaCEP(this.formulario.get('endereco.cep').value) 
+              : EMPTY
+        )
+      )
+      .subscribe(data => data ? this.populaDadosForm(data) : {});
+
   }
 
   buildFrameworks(){
