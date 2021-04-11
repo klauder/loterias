@@ -18,16 +18,9 @@
         <input type="text" class="form-control" id="email"
         placeholder="Email" formControlName="email">
         
-        <app-campo-control-erro
-            [mostrarErro]="validaCampo('email','required')"
-            msgErro="O campo Email é obrigatório." >
-        </app-campo-control-erro>
-        
-        <app-campo-control-erro
-            [mostrarErro]="validaCampo('email','email')"
-            msgErro="Email inválido." >
-        </app-campo-control-erro>
-        
+        <app-error-msg [control]="formulario.get('email')" label="Email">
+        </app-error-msg>         
+
         <app-campo-control-erro
             [mostrarErro]="formulario.get('email').status ==='PENDING'"
             msgErro="Validando disponibilidade... ."
@@ -39,21 +32,15 @@
             msgErro="Email válido!" css="success"  >
         </app-campo-control-erro>
         
-        <app-campo-control-erro
-            [mostrarErro]="validaCampo('email','emailInvalido')"
-            msgErro="Email já cadastrado." >
-        </app-campo-control-erro>
     </div>   
     
     <div class="form-group" [ngClass]="aplicaCssErro('confirmarEmail')">
         <label for="email" class="control-label">Confirmar email</label>
         <input type="text" class="form-control" id="confirmarEmail"
         placeholder="Confirme seu email" formControlName="confirmarEmail">
-                
-        <app-campo-control-erro
-            [mostrarErro]="validaCampo('confirmarEmail','equaltsTo')"
-            msgErro="Os emails digitados não são iguais." >
-        </app-campo-control-erro>
+                        
+        <app-error-msg [control]="formulario.get('confirmarEmail')" label="Confirmar email">
+        </app-error-msg>
         
     </div>    
     
@@ -66,16 +53,9 @@
                 <input type="text" class="form-control" id="cep"
                     placeholder="CEP" formControlName="cep" 
                     (blur)="consultaCEP()">
-                
-                <app-campo-control-erro
-                    [mostrarErro]="validaCampo('endereco.cep','required')"
-                    msgErro="O campo CEP é obrigatório" >
-                </app-campo-control-erro>
-
-                <app-campo-control-erro
-                    [mostrarErro]="validaCampo('endereco.cep','cepInvalido')"
-                    msgErro="CEP inválido" >
-                </app-campo-control-erro>
+                                    
+                <app-error-msg [control]="formulario.get('endereco.cep')" label="CEP">
+                </app-error-msg>
                 
             </div>
         </div>
@@ -87,10 +67,8 @@
                 <input type="text" class="form-control" id="rua" 
                     placeholder="Rua" formControlName="rua">
                             
-                <app-campo-control-erro
-                    [mostrarErro]="validaCampo('endereco.rua','required')"
-                    msgErro="O campo Rua é obrigatório." >
-                </app-campo-control-erro>
+                <app-error-msg [control]="formulario.get('endereco.rua')" label="Rua">
+                </app-error-msg>
             </div>   
             
             <div class="form-group col-md-4" [ngClass]="aplicaCssErro('endereco.numero')">
@@ -98,10 +76,8 @@
                 <input type="text" class="form-control" id="numero" 
                     placeholder="N°" formControlName="numero" >                    
                     
-                <app-campo-control-erro
-                    [mostrarErro]="validaCampo('endereco.numero','required')"
-                    msgErro="O campo Número é obrigatório." >
-                </app-campo-control-erro>
+                <app-error-msg [control]="formulario.get('endereco.numero')" label="N°">
+                </app-error-msg>
             </div>  
         </div>
                     
@@ -111,10 +87,8 @@
                 <input type="text" class="form-control" id="bairro" 
                     placeholder="Bairro" formControlName="bairro">
                     
-                <app-campo-control-erro
-                    [mostrarErro]="validaCampo('endereco.bairro','required')"
-                    msgErro="O campo Bairro é obrigatório." >
-                </app-campo-control-erro>
+                <app-error-msg [control]="formulario.get('endereco.bairro')" label="Bairro">
+                </app-error-msg>
             </div>
         
             <div class="form-group col-md-6" [ngClass]="aplicaCssErro('endereco.complemento')" >
@@ -122,10 +96,8 @@
                 <input type="text" class="form-control" id="complemento"
                     placeholder="Complemento" formControlName="complemento" >
                     
-                <app-campo-control-erro
-                    [mostrarErro]="validaCampo('endereco.complemento','maxlength')"
-                    msgErro="O campo complemento deve ter no máximo 10 caracteres." >
-                </app-campo-control-erro>
+                <app-error-msg [control]="formulario.get('endereco.complemento')" label="Complemento">
+                </app-error-msg>
 
             </div>
         </div>
@@ -136,10 +108,8 @@
                 <input type="text" class="form-control" id="cidade" 
                     placeholder="Cidade" formControlName="cidade" >
         
-                <app-campo-control-erro
-                    [mostrarErro]="validaCampo('endereco.cidade','required')"
-                    msgErro="O campo Cidade é obrigatório." >
-                </app-campo-control-erro>
+                    <app-error-msg [control]="formulario.get('endereco.cidade')" label="Cidade">
+                    </app-error-msg>
             </div>
                
             <div class="form-group col-md-4" [ngClass]="aplicaCssErro('endereco.estado')">     
@@ -152,10 +122,8 @@
                     </option>
                 </select>
             
-                <app-campo-control-erro
-                    [mostrarErro]="validaCampo('endereco.estado','required')"
-                    msgErro="O campo Estado é obrigatório." >
-                </app-campo-control-erro>
+                <app-error-msg [control]="formulario.get('endereco.estado')" label="Estado">
+                </app-error-msg>
             </div>  
         </div>       
     </div>
@@ -197,11 +165,9 @@
         <div class="form-group custom-control custom-checkbox" [ngClass]="aplicaCssErro('termos')">
             <input type="checkbox" class="custom-control-input" id="termos" formControlName="termos">
             <label class="custom-control-label" for="termos"> Aceito os termos</label>
-
-            <app-campo-control-erro
-                [mostrarErro]="validaCampo('termos','checkRequired')"
-                msgErro="Favor aceitar os termos" >
-            </app-campo-control-erro>
+            
+            <app-error-msg [control]="formulario.get('termos')" label="Termos">
+            </app-error-msg>
         </div>  
     </div>
 
@@ -218,6 +184,7 @@
                 [mostrarErro]="formulario.get('frameworks').invalid"
                 msgErro="Selecione pelo menos 2 opções." >
             </app-campo-control-erro>
+
         </div>
     </div>
 
