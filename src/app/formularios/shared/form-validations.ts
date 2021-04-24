@@ -86,7 +86,7 @@ export class FormValations {
     static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any){
         const config = {
            'required':`O campo ${fieldName} é obrigatório.`,
-           'email':`Email ${fieldName} inválido.`,
+           'email':`${fieldName} inválido.`,
            'emailCadastrado':`Email já cadastrado.`,
            'minlength':`O campo ${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres.`, 
            'maxlength':`O campo ${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres.`,
