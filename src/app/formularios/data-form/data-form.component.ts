@@ -1,3 +1,4 @@
+import { BaseFormComponent } from './../shared/base-form/base-form.component';
 import { VerificaEmailService } from './services/verifica-email.service';
 import { FormValations } from './../shared/form-validations';
 import { ConsultaCepService } from './../shared/services/consulta-cep.service';
@@ -14,9 +15,10 @@ import { distinct, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operat
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.css']
 })
-export class DataFormComponent implements OnInit {
+export class DataFormComponent extends BaseFormComponent implements OnInit {
 
-  formulario: FormGroup;
+
+  //formulario: FormGroup; // Está em BaseFormComponent
   //estados: EstadoBr[];
   estados: Observable<EstadoBr[]>;
   cargos: any[];
@@ -31,7 +33,8 @@ export class DataFormComponent implements OnInit {
     private dropdownService: DropdownService,
     private cepService: ConsultaCepService,
     private verificaEmailService: VerificaEmailService
-    ) { }
+    ) 
+    { super(); }
 
   ngOnInit(): void {
 
@@ -91,8 +94,8 @@ export class DataFormComponent implements OnInit {
     return this.formBuilder.array(values, FormValations.requiredMinCheckbox(2));
   }
 
-  onSubmit(){
-    console.log(this.formulario);
+  submit() {
+    // console.log(this.formulario);
 
     let valueSubmit = Object.assign({},this.formulario.value);
 
@@ -104,58 +107,19 @@ export class DataFormComponent implements OnInit {
 
     console.log(valueSubmit);
 
-    if (this.formulario.valid){
-      let url: string = 'https://httpbin.org/post';
+    let url: string = 'https://httpbin.org/post';
 
-      this.http.post(url, JSON.stringify(valueSubmit))
-        .subscribe(res =>{
-          
-          //console.log(res);
-  
-          //reseta o form        
-          //this.resetar();
-        },
-        (error: any) => alert('error')
-        );
-    }else{
-      //console.log('Formulário Inválido');
-      this.verificaValidacoesForm(this.formulario);  
-    }
-    
-  }
+    this.http.post(url, JSON.stringify(valueSubmit))
+      .subscribe(res =>{
+        
+        //console.log(res);
 
-  verificaValidacoesForm(formGroup: FormGroup){
-    
-    Object.keys(formGroup.controls).forEach(
-      campo => {
-        const controle = formGroup.get(campo);
-        controle.markAsDirty();
-        controle.markAsTouched();
+        //reseta o form        
+        //this.resetar();
+      },
+      (error: any) => alert('error')
+      );
 
-        if (controle instanceof FormGroup){
-          this.verificaValidacoesForm(controle);
-        }
-      });
-  }
-
-  resetar(){
-    this.formulario.reset();
-  }
-
-  verificaValidAndTouchedOrDirty(campo){
-    return this.formulario.get(campo).invalid && (this.formulario.get(campo).dirty || this.formulario.get(campo).touched);
-  }
-
-  validaCampo(campo, validacao){
-    //console.log(campo);
-    return (this.formulario.get(campo).invalid && this.formulario.get(campo).hasError(validacao) ) 
-      && (this.formulario.get(campo).dirty || this.formulario.get(campo).touched);
-  }
-
-  
-  verificaMinlength(campo){    
-    //console.log(campo);
-    return this.verificaValidAndTouchedOrDirty(campo) && this.formulario.get(campo).errors.minlength;
   }
   
   /*
@@ -179,12 +143,6 @@ export class DataFormComponent implements OnInit {
     return this.formulario.get(campo).invalid && this.formulario.get(campo).errors.pattern;
   }
   */
-
-  aplicaCssErro(campo: string){
-    return{
-      'has-error': this.verificaValidAndTouchedOrDirty(campo)
-    }
-  }
 
   consultaCEP() {
     //console.log(cep);

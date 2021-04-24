@@ -83,7 +83,7 @@ export class FormValations {
         return validator;
     }
 
-    static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any){
+    static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any){''
         const config = {
            'required':`O campo ${fieldName} é obrigatório.`,
            'email':`${fieldName} inválido.`,
