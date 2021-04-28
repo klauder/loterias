@@ -47,6 +47,7 @@ import { RotasComponent } from './rotas/rotas.component';
 import { LoginComponent } from './rotas/login/login.component';
 import { HomeComponent } from './rotas/home/home.component';
 import { PageNotFoundComponent } from './rotas/page-not-found/page-not-found.component';
+import { RequestHttpComponent } from './request-http/request-http.component';
 //import { DataFormComponent } from './formularios/data-form/data-form.component';
 //import { AlunosModule } from './rotas/alunos/alunos.module';
 //import { CoursesModule } from './rotas/courses/courses.module';
@@ -86,6 +87,7 @@ registerLocaleData(esEs)
     LoginComponent,
     HomeComponent,
     PageNotFoundComponent,
+    RequestHttpComponent,
     //DataFormComponent,
     //CoursesComponent,
     //CourseDetailsComponent,

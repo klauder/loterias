@@ -1,3 +1,4 @@
+import { RequestHttpComponent } from './request-http/request-http.component';
 import { TemplateFormComponent } from './formularios/template-form/template-form.component';
 import { DataFormComponent } from './formularios/data-form/data-form.component';
 import { PageNotFoundComponent } from './rotas/page-not-found/page-not-found.component';
@@ -14,10 +15,17 @@ import { AuthGuard } from './rotas/guards/auth.guard';
 //import { CourseNotFoundComponent } from './rotas/courses/course-not-found/course-not-found.component';
 
 const appRoutes: Routes = [
+  
+  { path: '', pathMatch: 'full', redirectTo:'cursos' },
+  {
+    path:'cursos',
+    loadChildren: () => import('./request-http/cursos/cursos.module').then(m => m.CursosModule)
+  }
+    /*
   { path: 'templateForm', component: TemplateFormComponent },
   { path: 'dataForm', component: DataFormComponent },
   { path: '', redirectTo:'dataForm', pathMatch:'full'}
-  /*
+
   { 
     path: 'courses', 
     loadChildren: () => import('./rotas/courses/courses.module').then(m => m.CoursesModule),
