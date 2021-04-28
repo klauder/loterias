@@ -27,9 +27,10 @@ export class ErrorMsgComponent implements OnInit {
       
       if (this.control.errors.hasOwnProperty(propertyName) && (this.control.touched || this.control.dirty)) {
         //console.log(FormValations.getErrorMsg(this.label, propertyName, this.control.errors[propertyName]));
-          return FormValations.getErrorMsg(this.label, propertyName, this.control.errors[propertyName]);
+        https://www.youtube.com/watch?v=caumPDVYZN4&list=PLGxZ4Rq3BOBoSRcKWEdQACbUCNWLczg2G&index=118    
+        return FormValations.getErrorMsg(this.label, propertyName, this.control.errors[propertyName]);
       }
-      
+
     }
     
     return null;

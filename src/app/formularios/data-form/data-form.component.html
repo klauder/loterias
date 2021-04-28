@@ -111,8 +111,13 @@
         <div class="form-row">            
             <div class="form-group col-md-8" [ngClass]="aplicaCssErro('endereco.cidade')">
                 <label for="cidade" class="control-label">Cidade</label>
-                <input type="text" class="form-control" id="cidade" 
+                <select type="text" class="form-control" id="cidade" 
                     placeholder="Cidade" formControlName="cidade" >
+                    <option *ngFor="let cidade of cidades"
+                        [value]="cidade.nome">
+                        {{ cidade.nome }}
+                    </option>
+                </select>
         
                     <app-error-msg [control]="formulario.get('endereco.cidade')" label="Cidade">
                     </app-error-msg>
@@ -122,7 +127,7 @@
                 <label for="estado" class="control-label">Estado</label>
                 <select type="text" class="form-control" id="estado" 
                     placeholder="Estado" formControlName="estado" >
-                    <option *ngFor="let estado of estados | async"
+                    <option *ngFor="let estado of estados"
                         [value]="estado.sigla">
                         {{ estado.sigla }}
                     </option>
