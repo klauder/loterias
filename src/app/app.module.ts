@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { DataFormModule } from './formularios/data-form/data-form.module';
 import { TemplateFormModule } from './formularios/template-form/template-form.module';
 import { AlunosGuard } from './rotas/guards/alunos.guard';
@@ -107,6 +108,7 @@ registerLocaleData(esEs)
     TemplateFormModule,
     DataFormModule,
     ReactiveFormsModule, //Isso é para trabalhar com formulário reativos (data-driven)
+    HttpClientModule
   ],
   providers: [
     AuthService,
