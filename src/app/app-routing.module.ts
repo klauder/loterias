@@ -1,3 +1,4 @@
+import { UnsubscribeRxjsModule } from './request-http/unsubscribe-rxjs/unsubscribe-rxjs.module';
 import { RequestHttpComponent } from './request-http/request-http.component';
 import { TemplateFormComponent } from './formularios/template-form/template-form.component';
 import { DataFormComponent } from './formularios/data-form/data-form.component';
@@ -16,10 +17,14 @@ import { AuthGuard } from './rotas/guards/auth.guard';
 
 const appRoutes: Routes = [
   
-  { path: '', pathMatch: 'full', redirectTo:'cursos' },
+  { path: '', pathMatch: 'full', redirectTo:'rxjs-poc' },
   {
     path:'cursos',
     loadChildren: () => import('./request-http/cursos/cursos.module').then(m => m.CursosModule)
+  },
+  { 
+    path:'rxjs-poc',
+    loadChildren: () => import('./request-http/unsubscribe-rxjs/unsubscribe-rxjs.module').then(m => m.UnsubscribeRxjsModule)
   }
     /*
   { path: 'templateForm', component: TemplateFormComponent },
