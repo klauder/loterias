@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs';
+import { EMPTY, Observable, Subject, empty } from 'rxjs';
 import { CursosService } from './../cursos.service';
 import { Curso } from './../curso';
 import { Component, OnInit } from '@angular/core';
+import { catchError, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cursos-lista',
@@ -14,6 +15,7 @@ export class CursosListaComponent implements OnInit {
   //cursos: Curso[];
 
   cursos$: Observable<Curso[]>; // variável que é Observable
+  error$ = new Subject<boolean>();
 
   constructor(private service: CursosService) { }
 
@@ -23,7 +25,35 @@ export class CursosListaComponent implements OnInit {
     .subscribe(dados => this.cursos = dados);
     */
 
-    this.cursos$ = this.service.list();
+    this.onRefresh();
+   
+  }
+
+  onRefresh(){
+    this.cursos$ = this.service.list()
+    .pipe(
+      // map(),
+      // tap()
+      // switchMap()
+      // colocar o catchError sempre por último
+      catchError(error => {
+        console.error(error);
+        this.error$.next(true);
+        return EMPTY;
+      })
+    );
+
+    this.service.list()
+      .pipe(
+        catchError(error => EMPTY)
+      )
+      .subscribe(
+        dados => { 
+          console.log(dados); 
+        },
+        error => console.error(error),
+        () => console.log('Observable completo!')
+      );
   }
 
 }

@@ -17,7 +17,7 @@ import { AuthGuard } from './rotas/guards/auth.guard';
 
 const appRoutes: Routes = [
   
-  { path: '', pathMatch: 'full', redirectTo:'rxjs-poc' },
+  { path: '', pathMatch: 'full', redirectTo:'cursos' },
   {
     path:'cursos',
     loadChildren: () => import('./request-http/cursos/cursos.module').then(m => m.CursosModule)
