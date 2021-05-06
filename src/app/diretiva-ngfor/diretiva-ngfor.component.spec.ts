@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DiretivaNgforComponent } from './diretiva-ngfor.component';
 
@@ -6,7 +6,7 @@ describe('DiretivaNgforComponent', () => {
   let component: DiretivaNgforComponent;
   let fixture: ComponentFixture<DiretivaNgforComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DiretivaNgforComponent ]
     })

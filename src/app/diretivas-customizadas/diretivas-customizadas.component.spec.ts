@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DiretivasCustomizadasComponent } from './diretivas-customizadas.component';
 
@@ -6,7 +6,7 @@ describe('DiretivasCustomizadasComponent', () => {
   let component: DiretivasCustomizadasComponent;
   let fixture: ComponentFixture<DiretivasCustomizadasComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DiretivasCustomizadasComponent ]
     })

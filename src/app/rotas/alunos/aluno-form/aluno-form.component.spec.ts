@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AlunoFormComponent } from './aluno-form.component';
 
@@ -6,7 +6,7 @@ describe('AlunoFormComponent', () => {
   let component: AlunoFormComponent;
   let fixture: ComponentFixture<AlunoFormComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AlunoFormComponent ]
     })
