@@ -19,30 +19,40 @@ export class AlertModalService {
 
   constructor(private modalService: BsModalService ) { }
   
-  private showAlert(message: string, type: AlertTypes){    
+  private showAlert(message: string, type: AlertTypes, dismissTimeout?: number){    
     const bsModalRef : BsModalRef = this.modalService.show(AlertModalComponent);
     bsModalRef.content.type = type;    
     bsModalRef.content.message = message;
+
+    if (dismissTimeout){
+      dismissTimeout = 2000; // 2 segundos
+        
+      setTimeout(() => {
+        bsModalRef.hide()
+      }, dismissTimeout);
+
+    }
+
   }
 
-  showAlertDanger(message: string){
-    this.showAlert(message, AlertTypes.DANGER);
+  showAlertDanger(message: string, dismissTimeout?: number){
+    this.showAlert(message, AlertTypes.DANGER, dismissTimeout);
   }
   
-  showAlertSuccess(message: string){
-    this.showAlert(message, AlertTypes.SUCCESS);
+  showAlertSuccess(message: string, dismissTimeout?: number){
+    this.showAlert(message, AlertTypes.SUCCESS, dismissTimeout);
   }
   
-  showAlertInfo(message: string){
-    this.showAlert(message, AlertTypes.INFO);
+  showAlertInfo(message: string, dismissTimeout?: number){
+    this.showAlert(message, AlertTypes.INFO, dismissTimeout);
   }
 
-  showAlertWarning(message: string){
-    this.showAlert(message, AlertTypes.WARNING);
+  showAlertWarning(message: string, dismissTimeout?: number){
+    this.showAlert(message, AlertTypes.WARNING, dismissTimeout);
   }
 
-  showAlertDefault(message: string){
-    this.showAlert(message, AlertTypes.DEFAULT);
+  showAlertDefault(message: string, dismissTimeout?: number){
+    this.showAlert(message, AlertTypes.DEFAULT, dismissTimeout);
   }  
 
 }

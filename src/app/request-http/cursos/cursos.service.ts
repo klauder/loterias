@@ -1,7 +1,7 @@
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, delay } from 'rxjs/operators';
+import { tap, delay, take } from 'rxjs/operators';
 import { Curso } from './curso';
 
 @Injectable({
@@ -21,4 +21,7 @@ export class CursosService {
       )
   }
 
+  create(curso){
+    return this.http.post(this.API,curso).pipe(take(1));
+  }
 }
