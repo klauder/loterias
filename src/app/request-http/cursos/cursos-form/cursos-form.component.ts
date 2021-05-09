@@ -48,31 +48,38 @@ export class CursosFormComponent implements OnInit {
     // console.log(registro);
 
     // o Angular gerencia (subscribe/unsubscribe) em this.route.params
-    this.route.params
+    /* this.route.params
       .pipe(
         map((params: any) => params['id']),
         switchMap(id => this.service.loadByID(id)),
         // switchMap(cursos => obterAulas)
       )
       .subscribe(curso => this.updateForm(curso));
+ */
+    // concatMap -> a ordem da requisição importa
+    // margeMap -> a ordem da requisição NÂO importa
+    // exhaustMat -> Faz a requisição e obtém a resposta antes de fazer uma segunda tentativa (muito comum em casos de login)
 
-      // concatMap -> a ordem da requisição importa
-      // margeMap -> a ordem da requisição NÂO importa
-      // exhaustMat -> Faz a requisição e obtém a resposta antes de fazer uma segunda tentativa (muito comum em casos de login)
+    // Com guard Resolver
+    const curso = this.route.snapshot.data['curso'];
 
+    // os valores estão sendo inicializados no Resolver
     this.form = this.fb.group({
-      id: [null],
-      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]]
+      id: [curso.id],
+      nome: [curso.nome, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]]
     });
 
   }
 
+  /*
   updateForm(curso) {
     this.form.patchValue({
       id: curso.id,
       nome: curso.nome
     });
   }
+  */
+
 
   hasError(field: string) {
     return this.form.get(field).errors;
