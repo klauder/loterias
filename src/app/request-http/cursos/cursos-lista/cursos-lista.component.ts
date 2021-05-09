@@ -5,8 +5,9 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { EMPTY, Observable, Subject } from 'rxjs';
 import { CursosService } from './../cursos.service';
 import { Curso } from './../curso';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { catchError, switchMap } from 'rxjs/operators';
+import { error } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-cursos-lista',
@@ -17,17 +18,19 @@ import { catchError, switchMap } from 'rxjs/operators';
 export class CursosListaComponent implements OnInit {
 
   // cursos: Curso[];
-  // bsModalRef: BsModalRef;
+  deleteModalRef: BsModalRef;
   cursos$: Observable<Curso[]>; // variável que é Observable
   error$ = new Subject<boolean>();
+  @ViewChild('deleteModal') deleteModal;
+  idCursoSelecionado: number;
 
   constructor(
     private service: CursosService,
-    // private modalService: BsModalService
-     private alertService: AlertModalService,
-     private router: Router,
-     private route: ActivatedRoute
-    ) { }
+    private modalService: BsModalService,
+    private alertService: AlertModalService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     /*
@@ -36,36 +39,36 @@ export class CursosListaComponent implements OnInit {
     */
 
     this.onRefresh();
-   
+
   }
 
-  onRefresh(){
+  onRefresh() {
     this.cursos$ = this.service.list()
-    .pipe(
-      // map(),
-      // tap()
-      // switchMap()
-      // colocar o catchError sempre por último
-      catchError(error => {
-        console.error(error);
-        // this.error$.next(true);
-        this.handleError();
-        return EMPTY;
-      })
-    );
-    
-/*
-    this.service.list()
       .pipe(
-        catchError(error => EMPTY)
-      )
-      .subscribe(
-        dados => { 
-          console.log(dados); 
-        },
-        error => console.error(error),
-        () => console.log('Observable completo!')
-      );*/
+        // map(),
+        // tap()
+        // switchMap()
+        // colocar o catchError sempre por último
+        catchError(error => {
+          console.error(error);
+          // this.error$.next(true);
+          this.handleError();
+          return EMPTY;
+        })
+      );
+
+    /*
+        this.service.list()
+          .pipe(
+            catchError(error => EMPTY)
+          )
+          .subscribe(
+            dados => { 
+              console.log(dados); 
+            },
+            error => console.error(error),
+            () => console.log('Observable completo!')
+          );*/
   }
 
   handleError() {
@@ -75,7 +78,32 @@ export class CursosListaComponent implements OnInit {
     // this.bsModalRef.content.message = 'Error ao carregar cursos. Tente novamente mais tarde.';
   }
 
-  onEdit(id: number){
-    this.router.navigate(['editar',id], {relativeTo: this.route});
+  onEdit(id: number) {
+    this.router.navigate(['editar', id], { relativeTo: this.route });
   }
+
+  onDelete(id) {
+    this.idCursoSelecionado = id;
+    this.deleteModalRef = this.modalService.show(this.deleteModal, { class: 'modal-sm' });
+  }
+
+  onConfirmDelete(): void {
+
+    this.service.remove(this.idCursoSelecionado)
+      .subscribe(
+        success => {
+          this.onRefresh(),
+          this.deleteModalRef.hide()
+        },
+        error => {
+          this.alertService.showAlertDanger('Erro remover o curso. Favor tentar mais tarde!'),
+          this.deleteModalRef.hide()
+        }
+      );
+  }
+
+  onDeclineDelete(): void {
+    this.deleteModalRef.hide();
+  }
+
 }
