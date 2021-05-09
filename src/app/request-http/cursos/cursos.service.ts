@@ -24,4 +24,11 @@ export class CursosService {
   create(curso){
     return this.http.post(this.API,curso).pipe(take(1));
   }
+
+  
+  loadByID(id: number){
+    return this.http.get(`${this.API}/${id}`).pipe(take(1));
+  }
+  
+
 }
