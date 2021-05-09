@@ -90,16 +90,49 @@ export class CursosFormComponent implements OnInit {
 
     if (this.form.valid) {
       console.log('submit');
-      this.service.create(this.form.value).subscribe(
-        success => {
-          this.modal.showAlertSuccess('Curso criado com sucesso!', 1500);
-          setTimeout(() => {
-            this.location.back();
-          }, this.dismissTimeout);
-        },
-        error => this.modal.showAlertDanger('Erro:' + error),
-        () => console.log('request completo')
-      );
+      let msgSuccess = 'Curso criado com sucesso!';
+      let msgError = 'Erro ao criar curso, tente novamente mais tarde. Erro:!';
+      
+      if (this.form.value.id){
+        msgSuccess = 'Curso atualizado com sucesso!';
+        msgError = 'Erro ao atualizar curso, tente mais tarde. Erro:'
+      }
+
+      this.service.save(this.form.value)
+        .subscribe(
+          success => {
+            this.modal.showAlertSuccess(msgSuccess, 1500);
+            setTimeout(() => {
+              this.location.back();
+            }, this.dismissTimeout);
+          },
+          error => this.modal.showAlertDanger( msgError + error)          
+        );
+
+      /*
+      if (this.form.value.id) {
+        this.service.update(this.form.value).subscribe(
+          success => {
+            this.modal.showAlertSuccess('Curso atualizado com sucesso!', 1500);
+            setTimeout(() => {
+              this.location.back();
+            }, this.dismissTimeout);
+          },
+          error => this.modal.showAlertDanger('Erro ao atualizar curso, tente mais tarde. Erro:' + error),
+          () => console.log('update completo')
+        );
+      } else {
+        this.service.create(this.form.value).subscribe(
+          success => {
+            this.modal.showAlertSuccess('Curso criado com sucesso!', 1500);
+            setTimeout(() => {
+              this.location.back();
+            }, this.dismissTimeout);
+          },
+          error => this.modal.showAlertDanger('Erro ao cadastrar curso, tente mais tarde. Erro:' + error),
+          () => console.log('create completo')
+        );
+      }*/
     }
   }
 
