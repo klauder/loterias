@@ -1,3 +1,4 @@
+import { Curso2Service } from './../curso2.service';
 import { Curso } from './../curso';
 import { map, switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
@@ -20,7 +21,8 @@ export class CursosFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private service: CursosService,
+    //private service: CursosService,
+    private service: Curso2Service,
     private modal: AlertModalService,
     private location: Location,
     private route: ActivatedRoute) { }

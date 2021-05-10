@@ -1,3 +1,4 @@
+import { Curso2Service } from './../curso2.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertModalService } from './../../shared/alert-modal.service';
 import { AlertModalComponent } from './../../shared/alert-modal/alert-modal.component';
@@ -25,7 +26,8 @@ export class CursosListaComponent implements OnInit {
   idCursoSelecionado: number;
 
   constructor(
-    private service: CursosService,
+    //private service: CursosService,
+    private service: Curso2Service,
     private modalService: BsModalService,
     private alertService: AlertModalService,
     private router: Router,
