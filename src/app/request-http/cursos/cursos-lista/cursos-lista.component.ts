@@ -6,7 +6,7 @@ import { EMPTY, Observable, Subject } from 'rxjs';
 import { CursosService } from './../cursos.service';
 import { Curso } from './../curso';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { catchError, switchMap } from 'rxjs/operators';
+import { catchError, switchMap, take } from 'rxjs/operators';
 import { error } from 'selenium-webdriver';
 
 @Component({
@@ -83,8 +83,25 @@ export class CursosListaComponent implements OnInit {
   }
 
   onDelete(id) {
-    this.idCursoSelecionado = id;
+    /*
     this.deleteModalRef = this.modalService.show(this.deleteModal, { class: 'modal-sm' });
+    */
+
+    this.idCursoSelecionado = id;
+    const result$ = this.alertService.showConfirm('Confirmação','Tem certeza que deseja remover esse curso?');
+    result$.asObservable()
+    .pipe(
+      take(1),
+      switchMap(result => result ? this.service.remove(this.idCursoSelecionado) : EMPTY )
+    )    
+    .subscribe(  //ejecutado somente si o resultado for true. Caso contrário (EMPTY), o observable é finalizado automaticamente 
+      success => {
+        this.onRefresh();
+      },
+      error => {
+        this.alertService.showAlertDanger('Erro remover o curso. Favor tentar mais tarde!');        
+      }
+    );
   }
 
   onConfirmDelete(): void {
