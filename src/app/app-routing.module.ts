@@ -17,10 +17,14 @@ import { AuthGuard } from './rotas/guards/auth.guard';
 
 const appRoutes: Routes = [
   
-  { path: '', pathMatch: 'full', redirectTo:'cursos' },
+  { path: '', pathMatch: 'full', redirectTo:'upload' },
   {
     path:'cursos',
     loadChildren: () => import('./request-http/cursos/cursos.module').then(m => m.CursosModule)
+  },  
+  { 
+    path:'upload',
+    loadChildren: () => import('./request-http/upload-file/upload-file.module').then(m => m.UploadFileModule)
   },
   { 
     path:'rxjs-poc',
@@ -60,6 +64,7 @@ const appRoutes: Routes = [
   },
   { path:'**', component:PageNotFoundComponent } //, canActivate: [AuthGuard] } //isso é para redirecionar para a pagina de login nas rotas inexistentes
   */
+
 ];
 
 @NgModule({
