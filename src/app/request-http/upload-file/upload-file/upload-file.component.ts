@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Observable, Subscription } from 'rxjs';
 import { UploadFileService } from './upload-file.service';
 import { AlertModalService } from './../../shared/alert-modal.service';
@@ -22,7 +23,7 @@ export class UploadFileComponent implements OnInit {
   }
 
   onChange(event) {
-    console.log(event);
+    // console.log(event);
 
     const selectedFiles = <FileList>event.srcElement.files;
     const fileName = [];
@@ -40,7 +41,7 @@ export class UploadFileComponent implements OnInit {
   onUpload() {
     // Cors enviar sempre uma requisição para verificar se está tudo bem. Por isso não utilizamos o take(1)
     if (this.files && this.files.size > 0) {
-     this.insricao$ =  this.service.upload(this.files,'http://localhost:8000/upload')
+     this.insricao$ =  this.service.upload(this.files, environment.BASE_URL + '/upload') //spi está definida em proxy.config
         .subscribe(response => console.log('Upload Concluído'));
     }
     else {
