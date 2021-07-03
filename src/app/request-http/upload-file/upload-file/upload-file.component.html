@@ -3,6 +3,11 @@
         <input type="file" class="custom-file-input" id="customFile" (change)="onChange($event)" multiple>
         <label class="custom-file-label" for="customFile" id="customFileLabel">Selecione o arquivo</label>
     </div>
+
+    <div class="progress mt-2">
+        <div class="progress-bar progress-bar-striped" role="progressbar" [style.width] ="progress + '%'" aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100">{{progress}}%</div>
+    </div>
+
 </div>
 
 <div class="mt-4">

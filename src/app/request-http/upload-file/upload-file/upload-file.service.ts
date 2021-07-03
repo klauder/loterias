@@ -19,7 +19,10 @@ export class UploadFileService {
     // return this.http.request(request);
 
     // request Angular
-    return this.http.post( url, formData);
+    return this.http.post(url, formData, {
+      observe:'events',
+      reportProgress: true      
+    });
   }
 
 }
