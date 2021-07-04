@@ -53,7 +53,7 @@ export class UploadFileComponent implements OnInit {
         }),
         filterResponse()
       )
-      .subscribe(response => this.modalService.showAlertSuccess('Upload Concluído!!!'));
+      .subscribe(response => this.modalService.showAlertSuccess('Upload Concluído!!!',2000));
 
       /*        
         .subscribe((event: HttpEvent<object>) => {
@@ -84,7 +84,21 @@ export class UploadFileComponent implements OnInit {
 
   }
 
-  
+  onDownloadPDF(){    
+    this.service.download(environment.BASE_URL + '/downloadPDF')
+      .subscribe((res: any) => {
+        this.service.handleFile(res,'report.pdf');
+      });   
+  }
+
+  onDownloadExcel(){
+    this.service.download(environment.BASE_URL + '/downloadExcel')
+      .subscribe((res: any) => {
+        this.service.handleFile(res,'report.xlsx');
+      });   
+
+  }
+
   OnDestroy(){
     this.insricao$.unsubscribe();
     console.log('Unsubscribe -> inscricao$');

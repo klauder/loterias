@@ -10,6 +10,15 @@
 
 </div>
 
-<div class="mt-4">
-    <button type="button" class="btn btn-primary" (click)="onUpload()" [disabled]="!files">Upload</button>
+<div class="form-row col-md-12 mt-4">
+    <div class="col-md-4">
+        <button type="button" class="btn btn-primary" (click)="onUpload()" [disabled]="!files">Upload</button>
+    </div>
+    <div class="col-md-4">
+        <button type="button" class="btn btn-danger" (click)="onDownloadPDF()">Download PDF</button>
+    </div>
+    <div class="col-md-4">
+        <button type="button" class="btn btn-success" (click)="onDownloadExcel()">Download Excel</button>
+    </div>    
 </div>
+
