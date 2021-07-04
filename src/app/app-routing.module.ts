@@ -17,7 +17,7 @@ import { AuthGuard } from './rotas/guards/auth.guard';
 
 const appRoutes: Routes = [
   
-  { path: '', pathMatch: 'full', redirectTo:'upload' },
+  { path: '', pathMatch: 'full', redirectTo:'busca-reativa' },
   {
     path:'cursos',
     loadChildren: () => import('./request-http/cursos/cursos.module').then(m => m.CursosModule)
@@ -29,6 +29,10 @@ const appRoutes: Routes = [
   { 
     path:'rxjs-poc',
     loadChildren: () => import('./request-http/unsubscribe-rxjs/unsubscribe-rxjs.module').then(m => m.UnsubscribeRxjsModule)
+  },
+  { 
+    path:'busca-reativa',
+    loadChildren: () => import('./request-http/reactive-search/reactive-search.module').then(m => m.ReactiveSearchModule)
   }
     /*
   { path: 'templateForm', component: TemplateFormComponent },
