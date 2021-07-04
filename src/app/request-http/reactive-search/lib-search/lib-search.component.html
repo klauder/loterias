@@ -13,17 +13,21 @@
     </div>
     <div class="search-list">
         <h3>{{ total }} Registros encontrados</h3>
-        <table class="table" id="myTable">
+        <table class="table table-responsive" id="myTable">
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Versão</th>                    
+                    <th>Versão</th>
+                    <th>Descrição</th>
+                    <th>URL</th>                    
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let result of results$ | async" >
                     <td>{{ result.name }}</td>
-                    <td [ngClass]="fieldVersion ? 'd-none':''">{{ result.version }}</td>                    
+                    <td>{{ result.version }}</td>
+                    <td>{{ result.description }}</td>
+                    <td>{{ result.homepage }}</td>
                 </tr>
             </tbody>
         </table>
