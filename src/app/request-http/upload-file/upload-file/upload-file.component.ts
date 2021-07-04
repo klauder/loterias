@@ -4,6 +4,7 @@ import { UploadFileService } from './upload-file.service';
 import { AlertModalService } from './../../shared/alert-modal.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { filterResponse, UploadProgress } from '../../shared/rxjs-operators';
 
 @Component({
   selector: 'app-upload-file',
@@ -45,24 +46,36 @@ export class UploadFileComponent implements OnInit {
     // Cors enviar sempre uma requisição para verificar se está tudo bem. Por isso não utilizamos o take(1)
     if (this.files && this.files.size > 0) {
      this.insricao$ =  this.service.upload(this.files, environment.BASE_URL + '/upload') //spi está definida em proxy.config
+      .pipe(
+        UploadProgress(progress => {
+          console.log(progress);
+          this.progress = progress;
+        }),
+        filterResponse()
+      )
+      .subscribe(response => this.modalService.showAlertSuccess('Upload Concluído!!!'));
+
+      /*        
         .subscribe((event: HttpEvent<object>) => {
-          //HttpEventType.UploadProgress //Funciona somente com Upload/Download de arquivos.
-          console.log(event);
+          // HttpEventType.UploadProgress // Funciona somente com Upload/Download de arquivos.
+          // console.log(event);
 
           switch (event.type) {
             case HttpEventType.Response:
-              console.log('Upload Concluído');    
+              // console.log('Upload Concluído');    
+              // this.progress = 0;
+              this.modalService.showAlertSuccess('Upload Concluído!!!');
               break;
             case HttpEventType.UploadProgress:
               const percentDone = Math.round((event.loaded * 100) / event.total);
-              console.log('Progresso:' + percentDone);
+              // console.log('Progresso:' + percentDone);
               this.progress = percentDone;
               break;
             default:
               break;
           }
-          
         });
+          */
     }
     else {
       this.modalService.showAlertDanger('Favor seleccionar pelo menos 01 arquivo.');
